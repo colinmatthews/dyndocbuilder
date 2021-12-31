@@ -18,6 +18,12 @@ export default new Vuex.Store({
         image:null,
         component:"Paragraph"
       },
+      {
+        id:3,
+        title:"Allergies",
+        image:null,
+        component:"Allergies"
+      }
     ]
   },
   mutations: {

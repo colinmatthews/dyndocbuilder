@@ -20,7 +20,7 @@ export default {
 
 <style>
 .cf-node-selected{
-   border: 2px solid red;
+   border: 1px dashed chocolate;
   border-radius: 5px;
 }
 

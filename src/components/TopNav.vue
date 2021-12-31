@@ -1,6 +1,6 @@
 <template>
-  <div class="w-100 bg-light mb-4 ">
-     <Export/>
+  <div class="w-100 bg-white mb-2 mh-50 shadow-sm">
+     <p style="height:50px">test</p>
   </div>
 </template>
 

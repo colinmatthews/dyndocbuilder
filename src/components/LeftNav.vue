@@ -1,5 +1,5 @@
 <template>
-  <b-card class="mx-2" style="height:80vh;">
+  <b-card class="mx-2" style="height:100%;">
     <h4>Blocks</h4>
     <BlocksSearch />
     <hr>

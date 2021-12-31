@@ -1,17 +1,17 @@
 <template>
-  <div id="app">
-    <Editor component='div' class="b-container" :resolverMap="resolverMap">
-      <b-row>
+  <div id="app" class="main-window bg-light ">
+    <Editor component='div' class="b-container h-100" :resolverMap="resolverMap">
+      <b-row class="mb-3">
         <TopNav />
       </b-row>
-      <b-row>
+      <b-row class="">
         <b-col cols="3">
           <LeftNav />
         </b-col>
-        <b-col cols="6">
+        <b-col cols="7">
           <MainWindow />
         </b-col>
-        <b-col cols="3">
+        <b-col cols="2">
           <SettingPanel />
         </b-col>
       </b-row>
@@ -30,6 +30,8 @@ import RightNav from './components/RightNav.vue'
 import MainWindow from './components/MainWindow.vue'
 import TopNav from './components/TopNav.vue'
 
+import Allergies from './components/elements/Allergies.vue'
+
 export default {
   name: 'App',
   components: {
@@ -43,9 +45,16 @@ export default {
   data() {
     return {
       resolverMap: {
-        Canvas, Container, Paragraph,
+        Canvas, Container, Paragraph,Allergies
       },
     };
   },
 };
 </script>
+<style >
+.main-window{
+  height: 100vh;
+  overflow-y: hidden;
+  overflow-x: hidden;
+}
+</style>
