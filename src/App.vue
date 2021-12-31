@@ -1,28 +1,51 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Editor component='div' class="b-container" :resolverMap="resolverMap">
+      <b-row>
+        <TopNav />
+      </b-row>
+      <b-row>
+        <b-col cols="3">
+          <LeftNav />
+        </b-col>
+        <b-col cols="6">
+          <MainWindow />
+        </b-col>
+        <b-col cols="3">
+          <SettingPanel />
+        </b-col>
+      </b-row>
+    </Editor>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import { Canvas, Editor, Frame, Blueprint } from '@v-craft/core';
+import Container from './components/elements/Container.vue';
+import Paragraph from './components/elements/Paragraph.vue';
+import SettingPanel from './components/elements/SettingPanel.vue'
+
+import LeftNav from './components/LeftNav.vue'
+import RightNav from './components/RightNav.vue'
+import MainWindow from './components/MainWindow.vue'
+import TopNav from './components/TopNav.vue'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
-  }
-}
-</script>
+    Canvas, Editor, Frame, Paragraph, SettingPanel,Blueprint,
+    LeftNav,
+    RightNav,
+    TopNav,
+    MainWindow
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
+  },
+  data() {
+    return {
+      resolverMap: {
+        Canvas, Container, Paragraph,
+      },
+    };
+  },
+};
+</script>
