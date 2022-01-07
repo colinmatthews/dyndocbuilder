@@ -1,5 +1,5 @@
 <template>
-  <div class="element-container">
+  <div class="element-container" style="flex:60%">
     <slot />
   </div>
 </template>
@@ -9,4 +9,6 @@
   padding: 30px;
   outline: 1px dashed gray;
 }
+
+
 </style>

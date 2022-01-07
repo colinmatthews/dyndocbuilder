@@ -1,27 +1,12 @@
 <template>
   <b-container>
-    
-    <b-row class="">
-      <b-col class="border py-4">
-      <Blueprint component="card" class="">
-       <div class="grid-item-container">
-        <p>Container</p>
-       </div>
-        <template v-slot:blueprint>
-          <Canvas component="Container" />
-        </template>
-      </Blueprint>
-      </b-col>
-      <b-col class="border py-4 border-left-0">
-      </b-col>
-    </b-row>
 
     <b-row v-for="blockGroup in gridRowBlocks" :key="blockGroup.index" class="">
       <b-col v-for="block in blockGroup" :key="block.id" class="px-0">
       <div class="border py-4 border-top-0 w-100 px-0"  
       :class="[ block.id % 2 == 0 ? 'border-left-0': '', block.id == selected ? 'selectedContainer' : '' ]"
       >
-        <Blueprint component="card">
+        <Blueprint component="card" >
           <div
           class="grid-item-container"
           @dragenter="selected = block.id"
@@ -63,6 +48,7 @@ export default {
       let data = []
       let index = 0
       const length = this.blocks.length
+      
       for (let i = 0; i < Math.floor(length / 2); i ++){
         data[i] = [this.blocks[i],this.blocks[i + 1]]
         index = i
@@ -71,6 +57,7 @@ export default {
       if((length / 2) % 2 !== 0){
         data[index + 1] = [this.blocks[length - 1]]
       }
+      console.log(data)
       return data
     }
   },

@@ -1,8 +1,10 @@
 <template>
-   <b-card>
-    <Frame component="div" class="preview-panel">
-      <Canvas component="Container">
+   <b-card class="scrollable main-max-height">
+    <Frame component="div" class="preview-panel" style="display:flex">
+      <Canvas component="ColumnLarge">
         <Paragraph content="demo text" />
+      </Canvas>
+      <Canvas component="ColumnSmall">
       </Canvas>
     </Frame>
    </b-card>
@@ -22,6 +24,9 @@ export default {
 .cf-node-selected{
    border: 1px dashed chocolate;
   border-radius: 5px;
+}
+.main-max-height{
+  max-height: 85vh;
 }
 
 </style>

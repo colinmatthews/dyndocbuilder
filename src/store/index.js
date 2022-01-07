@@ -8,21 +8,48 @@ export default new Vuex.Store({
     blocks:[
       {
         id:1,
-        title:"Paragraph",
+        title:"Canvas",
         image:null,
-        component:"Paragraph"
+        component:"Container",
+        openTag:"<div>",
+        closeTag:"</div>"
       },
       {
         id:2,
-        title:"Container",
+        title:"Paragraph",
         image:null,
-        component:"Paragraph"
+        component:"Paragraph",
+        html:"<p>{{content}}</p>",
+        openTag:"",
+        closeTag:""
+        
       },
       {
         id:3,
         title:"Allergies",
         image:null,
-        component:"Allergies"
+        component:"Allergies",
+        html:`<div class="ddemrcontent" dd:contenttype="ALLERGIES" dd:referenceuuid="1446A201-FD91-4A82-B645-306DC948DC48"></div>`,
+        openTag:"",
+        closeTag:""
+      },
+      {
+        id:4,
+        title:"ColumnLarge",
+        image:null,
+        component:"ColumnLarge",
+        html:``,
+        openTag:"<div>",
+        closeTag:"</div>"
+      },
+      {
+        id:5,
+        title:"ColumnSmall",
+        image:null,
+        component:"ColumnSmall",
+        html:``,
+        openTag:"<div>",
+        closeTag:"</div>"
       }
     ]
   },
