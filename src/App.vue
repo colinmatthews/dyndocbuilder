@@ -1,21 +1,6 @@
 <template>
   <div id="app" class="main-window bg-light ">
-    <Editor component='div' class="b-container h-100" :resolverMap="resolverMap">
-      <b-row class="mb-3">
-        <TopNav />
-      </b-row>
-      <b-row class="">
-        <b-col cols="3">
-          <LeftNav />
-        </b-col>
-        <b-col cols="7">
-          <MainWindow />
-        </b-col>
-        <b-col cols="2">
-          <SettingPanel />
-        </b-col>
-      </b-row>
-    </Editor>
+    <router-view></router-view>
   </div>
 </template>
 
@@ -26,7 +11,7 @@ import Paragraph from './components/elements/Paragraph.vue';
 import SettingPanel from './components/SettingPanel.vue'
 
 import LeftNav from './components/LeftNav.vue'
-import MainWindow from './components/MainWindow.vue'
+import MainWindow from './components/TwoColumns.vue'
 import TopNav from './components/TopNav.vue'
 
 import Allergies from './components/elements/Allergies.vue'
@@ -54,6 +39,10 @@ export default {
 };
 </script>
 <style >
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+body{
+  font-family: 'Inter', sans-serif;
+}
 .main-window{
   height: 100vh;
   overflow-y: hidden;

@@ -1,10 +1,8 @@
 <template>
-   <b-card class="scrollable main-max-height">
-    <Frame component="div" class="preview-panel" style="display:flex">
-      <Canvas component="ColumnLarge">
+   <b-card class="scrollable main-max-height mt-4 ml-4">
+    <Frame component="div" class="preview-panel">
+      <Canvas component="Container">
         <Paragraph content="demo text" />
-      </Canvas>
-      <Canvas component="ColumnSmall">
       </Canvas>
     </Frame>
    </b-card>
@@ -12,7 +10,7 @@
 
 <script>
 import { Canvas, Frame, } from '@v-craft/core';
-import Paragraph from '../components/elements/Paragraph.vue'
+import Paragraph from './elements/Paragraph.vue'
 export default {
   components:{
     Canvas,Frame,Paragraph
@@ -27,6 +25,7 @@ export default {
 }
 .main-max-height{
   max-height: 85vh;
+  width: 100%;
 }
 
 </style>

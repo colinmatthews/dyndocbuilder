@@ -1,6 +1,6 @@
 <template>
-<b-card class="mx-2" style="height:80vh;">
-  <div class="setting-panel">
+<div class="py-1 settings-container">
+  <div class="setting-panel mx-4">
     <div v-if="settings" class="settings">
       <component
         v-for="(component, name) in settings"
@@ -9,10 +9,11 @@
         :node="selectedNode"
       ></component>
     </div>
-
-    <button class="btn btn-danger mt-3" v-if="selectedNode" @click="removeElement">Delete</button>
+    <div style="">
+      <button class="btn btn-danger mx-2" v-if="selectedNode" @click="removeElement">Delete</button>
+    </div>
   </div>
-</b-card>
+</div>
 </template>
 
 <script>
@@ -39,3 +40,17 @@ export default {
   }
 };
 </script>
+<style scoped>
+.setting-panel{
+  display: flex;
+  justify-content: flex-start;
+}
+.setting-panel div:last-child{
+  margin-left: auto;
+}
+.settings-container{
+  height: 50px;
+  background-color:#ACAEB5;
+  width: 100%;
+}
+</style>

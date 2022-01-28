@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <input class="form-control" v-model="content" />
+  <div style="display:flex;">
+    <p class="label">Text</p>
+    <input class="form-control mx-2" v-model="content" />
   </div>
 </template>
 
@@ -26,3 +27,9 @@ export default {
   },
 };
 </script>
+<style>
+.label{
+  margin-top:5px;
+  font-weight: 600;
+}
+</style>

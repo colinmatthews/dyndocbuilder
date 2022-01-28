@@ -1,11 +1,14 @@
 <template>
-  <b-card class="mx-2" style="height:100%;">
-    <h4>Blocks</h4>
-    <BlocksSearch />
-    <hr>
-    <BlocksGrid />
-    
-  </b-card>
+  <b-row class="px-4 left-nav">
+    <b-col cols="2">
+      <!-- <PageNavigation /> -->
+    </b-col>
+    <b-col cols="10">
+      <BlocksSearch class="pt-4" />
+      <hr>
+      <BlocksGrid />
+    </b-col> 
+  </b-row>
 </template>
 
 <script>
@@ -22,5 +25,12 @@ export default {
 </script>
 
 <style>
-
+.left-nav{
+  background-color: white;
+  height: 90vh;
+}
+.blocks-header{
+  font-weight: 600;
+  font-size: 2rem;
+}
 </style>

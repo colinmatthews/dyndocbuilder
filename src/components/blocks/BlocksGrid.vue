@@ -1,10 +1,9 @@
 <template>
-  <b-container>
+  <b-container class="scrollable left-nav-scroll">
 
-    <b-row v-for="blockGroup in gridRowBlocks" :key="blockGroup.index" class="">
-      <b-col v-for="block in blockGroup" :key="block.id" class="px-0">
-      <div class="border py-4 border-top-0 w-100 px-0"  
-      :class="[ block.id % 2 == 0 ? 'border-left-0': '', block.id == selected ? 'selectedContainer' : '' ]"
+    <b-row v-for="block in blocks" :key="block.index" class="">
+      <div class="border border-bottom-0 w-100 px-0"  
+      :class="[ block.id == selected ? 'selectedContainer' : '' ]"
       >
         <Blueprint component="card" >
           <div
@@ -12,6 +11,8 @@
           @dragenter="selected = block.id"
           @mouseleave="selected = null"
           :class="block.id == selected ? 'selectedText' : ''">
+            <img src="https://picsum.photos/200/100" />
+            <hr />
             <p>{{block.title}}</p>
           </div>
        
@@ -20,9 +21,8 @@
         </template>
       </Blueprint>
       </div>
-      </b-col>
     </b-row>
-    
+    <hr/>
   </b-container>
 </template>
 
@@ -36,30 +36,6 @@ export default {
   },
   computed:{
     ...mapState(['blocks']),
-    numberOfRows:function(){
-      const length = this.blocks.length
-      if(length % 2 == 0){
-        return length / 2
-      }
-      return Math.floor(length / 2) + 1
-    },
-    gridRowBlocks:function(){
-      // Build arrays of 2 blocks for rendering in the grid
-      let data = []
-      let index = 0
-      const length = this.blocks.length
-      
-      for (let i = 0; i < Math.floor(length / 2); i ++){
-        data[i] = [this.blocks[i],this.blocks[i + 1]]
-        index = i
-      }
-      // if uneven rows, add the last block in its own row
-      if((length / 2) % 2 !== 0){
-        data[index + 1] = [this.blocks[length - 1]]
-      }
-      console.log(data)
-      return data
-    }
   },
   method:{
     isSelected(blockId){
@@ -86,9 +62,24 @@ export default {
 
 .grid-item-container{
   cursor: move;
-  display: flex;
-  justify-content: center;
+  text-align: center;
+}
 
+.grid-item-container p{
+  font-weight:500 ;
+  font-style: initial;
+  font-size: 1.3rem;
+}
+
+.grid-item-container img{
+  width: 90%;
+  padding-top: 10px;
+}
+.grid-item-container hr{
+  width: 65%;
+}
+.left-nav-scroll{
+  height: 80vh;
 }
 
 </style>
