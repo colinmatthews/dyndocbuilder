@@ -1,8 +1,8 @@
 <template>
    <div class="bg-white shadow overflow-hidden sm:rounded-md grid-list">
     <ul role="list" class="divide-y divide-gray-200">
-      <li v-for="block in blocks" :key="block.index">
-        <Blueprint component="card" >
+      <li v-for="block in filteredBlocks" :key="block.index">
+        <Blueprint component="card">
         <div class="block hover:bg-gray-50" draggable="true">
           <div class="px-4 py-4 sm:px-6">
             <div class="flex items-center justify-between">
@@ -41,6 +41,9 @@ export default {
   },
   computed:{
     ...mapState(['blocks']),
+    filteredBlocks(){
+      return this.blocks.filter(el => el.id!== 4 && el.id !== 5)
+    }
   },
   method:{
     isSelected(blockId){
