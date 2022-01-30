@@ -1,5 +1,6 @@
 <template>
-  <p 
+  <p
+  class="pb-4" 
   @mouseover="active = true" 
   @mouseleave="active = false" 
   :class="active ? 'bg-light' : ''"

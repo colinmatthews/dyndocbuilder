@@ -5,9 +5,13 @@
     @mouseleave="active = false" 
     :class="active ? 'bg-light' : ''"
   >
-  <p><u><b>Allergies</b></u></p>
-  <p>amoxicillin</p>
-  <p>bee pollen (Hives)</p>
+  <p><u><b>Assessment/Plan</b></u></p>
+  <ol>
+    <li>1. Chest pain</li>
+    <p class="bg-gray-100 h-4"></p>
+    <li>2. Fever</li>
+     <p class="bg-gray-100 h-4"></p>
+  </ol>
   </div>
 </template>
 
@@ -23,5 +27,9 @@ export default {
 </script>
 
 <style>
+.gap{
+  background-color: white;
+  height: 10px;;
+}
 
 </style>

@@ -1,14 +1,12 @@
 <template>
-  <b-row class="px-4 left-nav">
-    <b-col cols="2">
-      <!-- <PageNavigation /> -->
-    </b-col>
-    <b-col cols="10">
-      <BlocksSearch class="pt-4" />
-      <hr>
+  <div class="left-nav">
+    <div class="sticky top-0">
+      <BlocksSearch />
+    </div>
+    <div>
       <BlocksGrid />
-    </b-col> 
-  </b-row>
+    </div>
+  </div> 
 </template>
 
 <script>
@@ -25,12 +23,5 @@ export default {
 </script>
 
 <style>
-.left-nav{
-  background-color: white;
-  height: 90vh;
-}
-.blocks-header{
-  font-weight: 600;
-  font-size: 2rem;
-}
+
 </style>

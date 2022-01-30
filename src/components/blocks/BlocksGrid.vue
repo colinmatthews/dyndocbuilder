@@ -1,29 +1,34 @@
 <template>
-  <b-container class="scrollable left-nav-scroll">
-
-    <b-row v-for="block in blocks" :key="block.index" class="">
-      <div class="border border-bottom-0 w-100 px-0"  
-      :class="[ block.id == selected ? 'selectedContainer' : '' ]"
-      >
+   <div class="bg-white shadow overflow-hidden sm:rounded-md grid-list">
+    <ul role="list" class="divide-y divide-gray-200">
+      <li v-for="block in blocks" :key="block.index">
         <Blueprint component="card" >
-          <div
-          class="grid-item-container"
-          @dragenter="selected = block.id"
-          @mouseleave="selected = null"
-          :class="block.id == selected ? 'selectedText' : ''">
-            <img src="https://picsum.photos/200/100" />
-            <hr />
-            <p>{{block.title}}</p>
+        <div class="block hover:bg-gray-50" draggable="true">
+          <div class="px-4 py-4 sm:px-6">
+            <div class="flex items-center justify-between">
+              <p class="text-sm font-medium text-indigo-600 truncate">
+                {{ block.title }}
+              </p>
+              <div class="ml-2 flex-shrink-0 flex">
+                <p class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                </p>
+                
+              </div>
+            </div>
+            <div class="mt-2 sm:flex sm:justify-between">
+              <div class="sm:flex">
+                
+              </div>
+            </div>
           </div>
-       
+        </div>
         <template v-slot:blueprint>
          <component :is="block.component" />
         </template>
-      </Blueprint>
-      </div>
-    </b-row>
-    <hr/>
-  </b-container>
+        </Blueprint>
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -52,34 +57,10 @@ export default {
 </script>
 
 <style>
-.selectedText{
-  color:red;
-  
-}
-.selectedContainer{
-  background-color: gray;
-}
 
-.grid-item-container{
-  cursor: move;
-  text-align: center;
-}
-
-.grid-item-container p{
-  font-weight:500 ;
-  font-style: initial;
-  font-size: 1.3rem;
-}
-
-.grid-item-container img{
-  width: 90%;
-  padding-top: 10px;
-}
-.grid-item-container hr{
-  width: 65%;
-}
-.left-nav-scroll{
-  height: 80vh;
+.grid-list{
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }
 
 </style>

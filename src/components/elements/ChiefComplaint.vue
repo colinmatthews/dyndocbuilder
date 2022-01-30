@@ -5,9 +5,8 @@
     @mouseleave="active = false" 
     :class="active ? 'bg-light' : ''"
   >
-  <p><u><b>Allergies</b></u></p>
-  <p>amoxicillin</p>
-  <p>bee pollen (Hives)</p>
+  <p><u><b>Chief Complaint</b></u></p>
+  <p>Chest pain, shortness of breath </p>
   </div>
 </template>
 

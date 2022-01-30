@@ -1,19 +1,23 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
+ 
   {
-    path: '/editor-single',
-    name: 'Home',
-    component: () => import(/* webpackChunkName: "about" */ '../views/EditorSingleColumn.vue')
+    path: '/editor-double/:id',
+    component: () => import(/* webpackChunkName: "about" */ '../views/EditorDouble.vue')
   },
   {
-    path: '/editor-columns',
-    name: 'Home',
-    component: () => import(/* webpackChunkName: "about" */ '../views/EditorTwoColumn.vue')
+    path: '/editor-single/:id',
+    component: () => import(/* webpackChunkName: "about" */ '../views/EditorSingle.vue')
   },
+  {
+    path: '/',
+    component: Home
+  }
 
 ]
 
