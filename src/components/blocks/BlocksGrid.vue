@@ -42,7 +42,7 @@ export default {
   computed:{
     ...mapState(['blocks']),
     filteredBlocks(){
-      return this.blocks.filter(el => el.id!== 4 && el.id !== 5)
+      return this.blocks.filter(el => el.id!== 4 && el.id !== 5 && el.id !== 1)
     }
   },
   method:{

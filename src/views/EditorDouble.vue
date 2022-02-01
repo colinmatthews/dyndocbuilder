@@ -72,14 +72,17 @@ import TopNav from '../components/TopNav.vue'
 
 import ColumnLarge from '../components/elements/ColumnLarge.vue'
 import ColumnSmall from '../components/elements/ColumnSmall.vue'
-import Export from '../components/elements/Export.vue'
+import Export from '../components/Export.vue'
 
 import Allergies from '../components/elements/Allergies.vue'
 import AssessmentAndPlan from '../components/elements/AssessmentAndPlan.vue'
 import ChiefComplaint from '../components/elements/ChiefComplaint.vue'
 import HospitalCourse from '../components/elements/HospitalCourse.vue'
 import LabResults from '../components/elements/LabResults.vue'
-
+import Medications from '../components/elements/Medications.vue'
+import PhysicalExam from '../components/elements/PhysicalExam.vue'
+import Problems from '../components/elements/Problems.vue'
+import ReviewOfSymptoms from '../components/elements/ReviewOfSymptoms.vue'
 
 export default {
   name: 'App',
@@ -98,14 +101,18 @@ export default {
     HospitalCourse,
     LabResults,
     ColumnLarge,
-    ColumnSmall
+    ColumnSmall,
+    Medications,
+    PhysicalExam,
+    Problems,
+    ReviewOfSymptoms
   
 
   },
   data() {
     return {
       resolverMap: {
-        Canvas, Container, Paragraph,Allergies,ColumnLarge,ColumnSmall,AssessmentAndPlan,ChiefComplaint,HospitalCourse,LabResults,ColumnLarge,ColumnSmall
+        Canvas, Container, Paragraph,Allergies,ColumnLarge,ColumnSmall,AssessmentAndPlan,ChiefComplaint,HospitalCourse,LabResults,ColumnLarge,ColumnSmall, Medications,PhysicalExam,Problems,ReviewOfSymptoms
       }
     };
   }

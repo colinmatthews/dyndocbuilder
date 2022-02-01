@@ -95,6 +95,42 @@ export default new Vuex.Store({
         html:``,
         openTag:"<div>",
         closeTag:"</div>"
+      },
+      {
+        id:10,
+        title:"Medications",
+        image:null,
+        component:"Medications",
+        html:``,
+        openTag:"<div>",
+        closeTag:"</div>"
+      },
+      {
+        id:11,
+        title:"Physical Exam",
+        image:null,
+        component:"PhysicalExam",
+        html:``,
+        openTag:"<div>",
+        closeTag:"</div>"
+      },
+      {
+        id:12,
+        title:"Problems",
+        image:null,
+        component:"Problems",
+        html:``,
+        openTag:"<div>",
+        closeTag:"</div>"
+      },
+      {
+        id:13,
+        title:"Review of Symptoms",
+        image:null,
+        component:"ReviewOfSymptoms",
+        html:``,
+        openTag:"<div>",
+        closeTag:"</div>"
       }
     ]
   },

@@ -13,13 +13,8 @@
 </template>
 
 <script>
-import Export from '../components/elements/Export.vue'
-export default {
-  components:{
-    Export
-  }
 
-}
+
 </script>
 
 <style>
