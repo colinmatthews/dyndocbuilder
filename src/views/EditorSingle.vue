@@ -73,6 +73,7 @@ import Export from '../components/Export.vue'
 
 import Allergies from '../components/elements/Allergies.vue'
 import AssessmentAndPlan from '../components/elements/AssessmentAndPlan.vue'
+import AssessmentAndPlanDiagnosis from '../components/elements/AssessmentAndPlanDiagnosis.vue'
 import ChiefComplaint from '../components/elements/ChiefComplaint.vue'
 import HospitalCourse from '../components/elements/HospitalCourse.vue'
 import LabResults from '../components/elements/LabResults.vue'
@@ -80,6 +81,9 @@ import Medications from '../components/elements/Medications.vue'
 import PhysicalExam from '../components/elements/PhysicalExam.vue'
 import Problems from '../components/elements/Problems.vue'
 import ReviewOfSymptoms from '../components/elements/ReviewOfSymptoms.vue'
+import AdvancedDirectivePatient from '../components/elements/AdvancedDirectivePatient.vue'
+import AdvancedDirectivePhys from '../components/elements/AdvancedDirectivePhys.vue'
+
 
 export default {
   name: 'App',
@@ -90,21 +94,26 @@ export default {
     TwoColumms,
     SingleColumn,
     Export,
-    ChiefComplaint,
-    HospitalCourse,
-    LabResults,
-    Medications,
-    PhysicalExam,
-    Problems,
-    ReviewOfSymptoms
-  
-
   },
  
   data() {
     return {
       resolverMap: {
-        Canvas, Container, Paragraph,Allergies,AssessmentAndPlan,ChiefComplaint,HospitalCourse,LabResults,Medications,PhysicalExam,Problems,ReviewOfSymptoms
+        Canvas, 
+        Container,
+        Paragraph,
+        Allergies,
+        AssessmentAndPlan,
+        AssessmentAndPlanDiagnosis,
+        AdvancedDirectivePatient,
+        AdvancedDirectivePhys,
+        ChiefComplaint,
+        HospitalCourse,
+        LabResults,
+        Medications,
+        PhysicalExam,
+        Problems,
+        ReviewOfSymptoms
       },
       progressNote:{
 

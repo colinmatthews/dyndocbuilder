@@ -131,7 +131,34 @@ export default new Vuex.Store({
         html:``,
         openTag:"<div>",
         closeTag:"</div>"
-      }
+      },
+      {
+        id:14,
+        title:"Advanced Directive (Patient)",
+        image:null,
+        component:"AdvancedDirectivePatient",
+        html:`<div class="ddemrcontent" dd:contenttype="PATCARE_MEAS" dd:referenceuuid="BFD90E95-27DF-4AEE-989C-6A7AF37BC5FA"></div>`,
+        openTag:"<div>",
+        closeTag:"</div>"
+      },
+      {
+        id:15,
+        title:"Advanced Directive (Physician)",
+        image:null,
+        component:"AdvancedDirectivePhys",
+        html:`<div class="ddemrcontent" dd:contenttype="PATCARE_MEAS" dd:referenceuuid="2001A4E5-8086-469C-8F15-7C3E62C9D70A"></div>`,
+        openTag:"<div>",
+        closeTag:"</div>"
+      },
+      {
+        id:16,
+        title:"Assessment and Plan (Diagnosis Only)",
+        image:null,
+        component:"AssessmentAndPlanDiagnosis",
+        html:`<div class="ddemrcontent" dd:contenttype="DOC_COMP" dd:referenceuuid="DEB03B3D-7ED9-449D-B8E2-334F5AA2996D" dd:concept_cki="CERNER!3AAB66F1-295B-4ADA-BE1C-D2E29461E861"></div>`,
+        openTag:"<div>",
+        closeTag:"</div>"
+      },
     ]
   },
   mutations: {
