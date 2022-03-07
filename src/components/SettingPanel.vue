@@ -1,6 +1,6 @@
 <template>
 
-<div class="py-1 settings-container bg-gray-100 border-b">
+<div class="py-1 settings-container bg-gray-100 border-b w-full">
   <div class="setting-panel mx-4">
     <div v-if="settings" class="settings">
       <component

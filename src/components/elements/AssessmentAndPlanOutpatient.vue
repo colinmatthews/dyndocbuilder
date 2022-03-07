@@ -5,7 +5,7 @@
     @mouseleave="active = false" 
     :class="active ? 'bg-light' : ''"
   >
-  <p><u><b>{{content}}</b></u></p>
+  <p><u><b>Assessment/Plan</b></u></p>
   <ol>
     <li>1. Chest pain</li>
     <p class="bg-gray-100 h-4"></p>
@@ -21,24 +21,13 @@
 </template>
 
 <script>
-import HeaderSetting from '../settings/HeaderSetting.vue'
 export default {
-    data(){
+  data(){
     return{
-        active:false
+      active:false
     }
   },
-  props: {
-    content: String,
-  },
-  craft: {
-    defaultProps: {
-      content: 'Assessment/Plan',
-    },
-    settings: {
-      HeaderSetting,
-    },
-  },
+
 }
 </script>
 

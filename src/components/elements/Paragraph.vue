@@ -8,7 +8,7 @@
 </template>
 
 <script>
-import ParagraphSetting from './ParagraphSetting.vue';
+import ParagraphSetting from '../settings/ParagraphSetting.vue';
 export default {
   props: {
     content: String,

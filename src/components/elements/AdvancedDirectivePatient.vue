@@ -5,7 +5,7 @@
     @mouseleave="active = false" 
     :class="active ? 'bg-light' : ''"
   >
-    <p><u><b>Chief Complaint</b></u></p>
+    <p><u><b>{{content}}</b></u></p>
     <p><u>Advance Directive</u> - Yes</p>
     <p><u>Advance Directive Additional Information</u> - No</p>
     <p><u>Advance Directive Date</u> - 04/21/2023</p>
@@ -17,11 +17,23 @@
   </div>
 </template>
 <script>
+import HeaderSetting from '../settings/HeaderSetting.vue'
 export default {
     data(){
     return{
         active:false
     }
+  },
+  props: {
+    content: String,
+  },
+  craft: {
+    defaultProps: {
+      content: 'Advanced Directive',
+    },
+    settings: {
+      HeaderSetting,
+    },
   },
 }
 </script>
