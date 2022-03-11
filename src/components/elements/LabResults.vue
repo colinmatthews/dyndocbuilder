@@ -1,22 +1,25 @@
 <template>
-  <div
-    class="pb-4 w-50"
-    @mouseover="active = true" 
-    @mouseleave="active = false" 
-    :class="active ? 'bg-light' : ''"
-  >
-  <p><u><b>Lab Results</b></u></p>
-  <div>
-    <b-table striped :items="items"></b-table>
-  </div>
-  </div>
+  <GenericComponent
+    :content="$attrs.content"
+    :edit="$attrs.edit"
+    :deletes="$attrs.deletes"
+    :freetext="$attrs.freetext"
+    :refresh="$attrs.refresh">
+      <p><u><b>{{content}}</b></u></p>
+      <div>
+        <b-table striped :items="items"></b-table>
+      </div>
+  </GenericComponent>
 </template>
-
 <script>
+import GenericComponent from './GenericComponent.vue'
+import HeaderSetting from '../settings/HeaderSetting.vue'
 export default {
+  components:{
+    GenericComponent
+  },
   data(){
     return{
-      active:false,
       items:[
         {
           test_name:"WBC",
@@ -41,7 +44,18 @@ export default {
       ]
     }
   },
-
+  craft: {
+    defaultProps: {
+      content: 'Lab Results',
+      edit:true,
+      refresh:true,
+      deletes:true,
+      freetext:true
+    },
+    settings: {
+      HeaderSetting,
+    },
+  },
 }
 </script>
 

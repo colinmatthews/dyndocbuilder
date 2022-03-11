@@ -159,6 +159,33 @@ export default new Vuex.Store({
         openTag:"<div>",
         closeTag:"</div>"
       },
+      {
+        id:17,
+        title:"Assessment and Plan (Inpatient)",
+        image:null,
+        component:"AssessmentAndPlanInpatient",
+        html:`<div class="ddemrcontent" dd:contenttype="DOC_COMP" dd:referenceuuid="DEB03B3D-7ED9-449D-B8E2-334F5AA2996D" dd:concept_cki="CERNER!3AAB66F1-295B-4ADA-BE1C-D2E29461E861"></div>`,
+        openTag:"<div>",
+        closeTag:"</div>"
+      },
+      {
+        id:18,
+        title:"Assessment and Plan (Outpatient)",
+        image:null,
+        component:"AssessmentAndPlanOutpatient",
+        html:`<div class="ddemrcontent" dd:contenttype="DOC_COMP" dd:referenceuuid="DEB03B3D-7ED9-449D-B8E2-334F5AA2996D" dd:concept_cki="CERNER!3AAB66F1-295B-4ADA-BE1C-D2E29461E861"></div>`,
+        openTag:"<div>",
+        closeTag:"</div>"
+      },
+      {
+        id:19,
+        title:"Behavioural Health Issues",
+        image:null,
+        component:"BehaviouralHealthIssues",
+        html:`<div class="ddemrcontent" dd:contenttype="DOC_COMP" dd:referenceuuid="DEB03B3D-7ED9-449D-B8E2-334F5AA2996D" dd:concept_cki="CERNER!3AAB66F1-295B-4ADA-BE1C-D2E29461E861"></div>`,
+        openTag:"<div>",
+        closeTag:"</div>"
+      },
     ]
   },
   mutations: {

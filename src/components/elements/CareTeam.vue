@@ -6,9 +6,7 @@
     :freetext="$attrs.freetext"
     :refresh="$attrs.refresh">
       <p><u><b>{{content}}</b></u></p>
-      <p>actaminophen, 320mg, 10ml, Oral, As Indicated, PRN </p>
-      <p>albuterol 5mg/ml (0.5%) inhalation solution, 5 mg, 1 mL, Inhale, q6hr</p>
-      <p>Ambien 10mg oral tablet, 5mg, 0.5 tabs, Oral, 2x/Wk, PRN</p>
+      <p>Chest pain, shortness of breath</p>
   </GenericComponent>
 </template>
 <script>
@@ -20,7 +18,7 @@ export default {
   },
   craft: {
     defaultProps: {
-      content: 'Medications',
+      content: 'Care Team',
       edit:true,
       refresh:true,
       deletes:true,

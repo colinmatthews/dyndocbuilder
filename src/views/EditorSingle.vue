@@ -83,7 +83,9 @@ import Problems from '../components/elements/Problems.vue'
 import ReviewOfSymptoms from '../components/elements/ReviewOfSymptoms.vue'
 import AdvancedDirectivePatient from '../components/elements/AdvancedDirectivePatient.vue'
 import AdvancedDirectivePhys from '../components/elements/AdvancedDirectivePhys.vue'
-
+import AssessmentAndPlanOutpatient from '../components/elements/AssessmentAndPlanOutpatient.vue'
+import AssessmentAndPlanInpatient from '../components/elements/AssessmentAndPlanInpatient.vue'
+import BehavioralHealthIssues from '../components/elements/BehaviouralHealthIssues.vue'
 
 export default {
   name: 'App',
@@ -113,7 +115,11 @@ export default {
         Medications,
         PhysicalExam,
         Problems,
-        ReviewOfSymptoms
+        ReviewOfSymptoms,
+        AssessmentAndPlanOutpatient,
+        AssessmentAndPlanInpatient,
+        BehavioralHealthIssues
+
       },
       progressNote:{
 
