@@ -18,7 +18,6 @@
 <script>
 import { RefreshCcwIcon,DeleteIcon,CornerDownLeftIcon,EditIcon  } from 'vue-feather-icons'
 export default {
-  inject:['content'],
   data(){
     return{
         active:false,

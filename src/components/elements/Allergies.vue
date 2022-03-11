@@ -11,7 +11,7 @@
   </GenericComponent>
 </template>
 <script>
-import GenericComponent from './GenericComponent.vue'
+import GenericComponent from '../settings/GenericPhysicianComponent.vue'
 import HeaderSetting from '../settings/HeaderSetting.vue'
 export default {
   components:{

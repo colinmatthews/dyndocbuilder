@@ -28,9 +28,10 @@ export default new Vuex.Store({
         title:"Paragraph",
         image:null,
         component:"Paragraph",
-        html:"<p>{{content}}</p>",
+        html:"",
         openTag:"",
-        closeTag:""
+        closeTag:"",
+        type:"plaintext"
         
       },
       {
