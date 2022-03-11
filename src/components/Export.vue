@@ -45,17 +45,17 @@ export default {
       this.editor.import(this.plainData);
     },
     exportHelper(){
-      console.log(this.blocks)
       const editorJSON = JSON.parse(this.editor.export());
       let htmlDocument
       //single column view
       if(editorJSON.length == 1){
-         htmlDocument = this.formatToHTML(editorJSON[0])
+         htmlDocument = this.traverseEditorState(editorJSON[0])
       }
       // two column view
       else if(editorJSON.length == 2){
-        const columnOne = this.formatToHTML(editorJSON[0])
-        const columnTwo = this.formatToHTML(editorJSON[1])
+        const columnOne = this.traverseEditorState(editorJSON[0])
+        const columnTwo = this.traverseEditorState(editorJSON[1])
+        //TODO: make this the actual cerner format. Maybe import from another file to keep it clean
         const openHTML = "<div>"
         const closeHTML = "</div>"
         htmlDocument = openHTML + columnOne + columnTwo + closeHTML
@@ -66,35 +66,50 @@ export default {
       
 
     },
-    formatToHTML(jsonObj){
-      console.log(jsonObj)
+    traverseEditorState(jsonObj){
+    /* 
+       Rescurive function
+       Input: json representation of component tree
+       Base state: Bottom of tree (component has no children)
+       Output: HTML representation of all components in tree
+    */
       const block = this.blocks.filter(obj => {
           return obj.component == jsonObj.componentName
       })
+      if(jsonObj.children.length == 0) return this.buildHTMLString(jsonObj)
+      
       const openTag = block[0].openTag
       const closeTag = block[0].closeTag
-      let result = openTag
-      
-      if(jsonObj.children.length == 0) return this.buildHTMLString(jsonObj)
+      let result = openTag 
       for (let innerState of jsonObj.children){
-        result += this.formatToHTML(innerState)
+        result += this.traverseEditorState(innerState)
       }
       return result + closeTag
 
     },
     buildHTMLString(jsonObj){
       try{
+        let html
+        const componentProps = jsonObj.props
         const title = jsonObj.componentName
         const blocks = this.blocks
-        const block = blocks.filter(obj => {
+        let block = blocks.filter(obj => {
           return obj.title == title
         })
+        block = block[0]
         
-        let html = block[0].html
-        const replaceContent = html.indexOf("{{content}}" != -1)
-        if(replaceContent){
-          let updatedHTML = html.replace("{{content}}", jsonObj.props.content)
-          html = updatedHTML
+        if(block.type){ // check for a block type in vuex
+          switch(block.type){
+            case "plaintext":
+              const text = this.generatePlainText(componentProps)
+              html = "<div>" + text + "</div>"
+          }
+        }
+        else{
+          const wrapperDiv = this.generateWrapperDiv(componentProps)
+          const titleSpan = this.generateTitleSpan(componentProps)
+          const emrContent = block.html
+          html = wrapperDiv + titleSpan + emrContent + "</div>"
         }
         return html
       }
@@ -102,17 +117,46 @@ export default {
         console.log(e)
       }
     },
-    getHTMLTag(type,title){
-      const block = this.blocks.filter(obj => {
-          return obj.title == title
-      })
-      if(type == "open"){
-        return block.openTag
+
+    generateWrapperDiv(componentProps){
+     //<div class="ddsection ddrefreshable ddinsertfreetext ddremovable" style="padding:4px;" dd:sectioncode="LOINC!10154-3">
+      let wrapperDiv = `<div class="ddsection `
+      if(componentProps.edit){
+        wrapperDiv += "ddfreetext "
       }
-      if(type == "close"){
-        return block.closeTag
+      if(componentProps.deletes){
+        wrapperDiv + "ddremovable "
       }
+      if(componentProps.refresh){
+        wrapperDiv += "ddrefreshable "
+      }
+      if(componentProps.freetext){
+        wrapperDiv += "ddinsertfreetext "
+      }
+      wrapperDiv += `"> `
+      return wrapperDiv
     },
+
+    generateTitleSpan(componentProps){
+      //<span class="ddsectiondisplay"><span style="font-weight:bold;text-decoration:underline;">Chief Complaint</span></span>
+      let titleSpan = `<span class="ddsectiondisplay"><span style="font-weight:bold;text-decoration:underline;">`
+      if(componentProps.content){
+        titleSpan += componentProps.content
+      }
+      titleSpan += "</span></span>"
+      return titleSpan
+    },
+
+    generatePlainText(componentProps){
+      console.log(componentProps)
+      let text = `<p>`
+      if(componentProps.content){
+        text += componentProps.content
+      }
+      text += "</p>"
+      return text
+    },
+
     download(filename, text) {
       var element = document.createElement('a');
       element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
