@@ -121,10 +121,9 @@ export default {
         BehavioralHealthIssues
 
       },
-      progressNote:{
-
-      }
     };
-  }
+  },
+  
+  
 }
 </script>

@@ -92,13 +92,13 @@
                     {{ document.title }}
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {{ document.author }}
+                    {{ document.authorDisplayName }}
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                    {{ document.updated }}
+                    {{ new Date(document.updated).toLocaleDateString() }}
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <router-link to="/editor-double/1" class="text-indigo-600 hover:text-indigo-900">Edit</router-link>
+                    <router-link :to="'/editor-single/' + document.id" class="text-indigo-600 hover:text-indigo-900">Edit</router-link>
                   </td>
                 </tr>
               </tbody>

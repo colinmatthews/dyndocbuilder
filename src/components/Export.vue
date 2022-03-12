@@ -18,23 +18,35 @@ export default {
   data() {
     return {
       plainData: '',
-      progressNote:[
-        {"componentName":"Canvas","props":{"component":"ColumnLarge"},"children":[{"componentName":"ChiefComplaint","props":{},"children":[],"addition":{},"uuid":"e97817ac-35a6-4396-9e96-1d5ce36d45a3"},{"componentName":"HospitalCourse","props":{},"children":[],"addition":{},"uuid":"9579fd83-0baf-4456-9eec-de917c855b24"},{"componentName":"AssessmentAndPlan","props":{},"children":[],"addition":{},"uuid":"30bcf6cf-5b42-493d-8f57-94b1734270c0"}],"addition":{},"uuid":"c053c9f8-611a-4c12-8dbd-841543c9f57a"},{"componentName":"Canvas","props":{"component":"ColumnSmall"},"children":[{"componentName":"Allergies","props":{},"children":[],"addition":{},"uuid":"aae0968e-1e2d-4002-9cc0-4bc6f0f773de"},{"componentName":"LabResults","props":{},"children":[],"addition":{},"uuid":"4c57d944-b094-44f3-a4fd-11f8222d433f"}],"addition":{},"uuid":"440682b3-0ee4-4db7-aff4-0443a4024730"}
-      ]
     };
   },
   computed:{
     ...mapState([
-      'blocks'
+      'blocks',
+      'documents'
     ]),
     documentId(){
       return this.$route.params.id
     }
   },
+  watch:{
+    '$route'(to,from){
+      const documentID = this.$route.params.id
+      if(documentID != 0){
+        
+        const doc = this.documents.find(doc => doc.id = documentID) 
+        //console.log(jsonValue)
+        this.editor.import(doc.documentJSON)
+      }
+    }
+  },
   mounted(){
-    if(this.documentId == 1){
-      const jsonValue = JSON.stringify(this.progressNote)
-      this.editor.import(jsonValue)
+    const documentID = this.$route.params.id
+    if(documentID != 0){
+      
+      const doc = this.documents.find(doc => doc.id = documentID) 
+      //console.log(jsonValue)
+      this.editor.import(doc.documentJSON)
     }
   },
   methods: {
