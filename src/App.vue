@@ -1,7 +1,7 @@
 <template>
- <div class="h-screen flex h-full bg-gray-50 overflow-y-hidden ">
+ <div class="h-screen flex h-full bg-gray-50 overflow-y-hidden " >
     <!-- Narrow sidebar -->
-    <div class="hidden w-28 bg-indigo-700 overflow-y-auto md:block">
+    <div class="hidden w-28 bg-indigo-700 overflow-y-auto md:block" v-if="authenticated">
       <div class="w-full py-6 flex flex-col items-center">
         <div class="flex-shrink-0 flex items-center">
           <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=white" alt="Workflow" />
@@ -16,7 +16,7 @@
     </div>
 
     <!-- Mobile menu -->
-    <template as="template" :show="mobileMenuOpen">
+    <template as="template" :show="mobileMenuOpen" v-if="authenticated">
       <div as="div" class="md:hidden" @close="mobileMenuOpen = false">
         <div class="fixed inset-0 z-40 flex">
           <template as="template" enter="transition-opacity ease-linear duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="transition-opacity ease-linear duration-300" leave-from="opacity-100" leave-to="opacity-0">
@@ -38,8 +38,8 @@
               <div class="mt-5 flex-1 h-0 px-2 overflow-y-auto">
                 <nav class="h-full flex flex-col">
                   <div class="space-y-1">
-                    <a v-for="item in sidebarNavigation" :key="item.name"  :class="[item.current ? 'bg-indigo-800 text-white' : 'text-indigo-100 hover:bg-indigo-800 hover:text-white', 'group py-2 px-3 rounded-md flex items-center text-sm font-medium']" :aria-current="item.current ? 'page' : undefined">
-                    <component :is="item.icon" :class="[item.current ? 'text-white' : 'text-indigo-300 group-hover:text-white', 'mr-3 h-6 w-6']" aria-hidden="true" />
+                    <a v-for="item in sidebarNavigation" :key="item.name"  :class="[item.name == $route.name ? 'bg-indigo-800 text-white' : 'text-indigo-100 hover:bg-indigo-800 hover:text-white', 'group py-2 px-3 rounded-md flex items-center text-sm font-medium']" :aria-current="item.current ? 'page' : undefined">
+                    <component :is="item.icon" :class="[item.name == $route.name ? 'text-white' : 'text-indigo-300 group-hover:text-white', 'mr-3 h-6 w-6']" aria-hidden="true" />
                       <span>{{ item.name }}</span>
                     </a>
                   </div>
@@ -66,7 +66,8 @@
 </template>
 
 <script>
-
+import {mapState, mapMutations,mapActions} from 'vuex'
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 export default {
   name: 'App',
   data() {
@@ -75,11 +76,46 @@ export default {
         {
           name:"Home",
           path:"/",
-          icon:"BIconHouseFill"
+          icon:"BIconHouseFill",
+          active:false
+        },
+        {
+          name:"Account",
+          path:"/account",
+          icon:"BIconPersonCircle",
+          active:false
         }
       ]
     };
   },
+ computed:{
+    ...mapState([
+      'authenticated'
+    ]),
+    
+ },
+ methods:{
+  ...mapMutations([
+    'setUser',
+    'setAuthenticated',
+    'setToken'
+  ]),
+  ...mapActions([
+    'getDocuments'
+  ])
+ },
+  mounted(){
+    const auth = getAuth();
+    onAuthStateChanged(auth, async (user) => {
+      if (user) {
+        const token = await user.getIdToken(true)
+        this.setToken(token)
+        this.setUser(user)
+        this.setAuthenticated(true)
+        this.getDocuments()
+      }
+    })
+  }  
 };
 </script>
 <style >
