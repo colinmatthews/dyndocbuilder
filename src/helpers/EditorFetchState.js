@@ -50,6 +50,17 @@ export default {
       }
     }
   },
+  mounted(){
+    if(this.documents.length >= 1){
+      const documentID = this.$route.params.id
+      if(documentID != 0){
+        const doc = this.documents.find(doc => doc.id = documentID) 
+        //console.log(jsonValue)
+        this.editor.import(doc.documentJSON)
+        this.loaded = true
+      } 
+    }
+  },
   methods: {
     ...mapActions([
       'updateDocumentJSON',
