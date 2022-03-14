@@ -10,14 +10,16 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import EditorFetchState from '../helpers/EditorFetchState.js'
+import { mapState,mapActions } from 'vuex';
 export default {
   inject: [
     'editor',
   ],
+  mixins:[EditorFetchState],
   data() {
     return {
-      plainData: '',
+      loaded:false
     };
   },
   computed:{
@@ -25,8 +27,8 @@ export default {
       'blocks',
       'documents'
     ]),
-    documentId(){
-      return this.$route.params.id
+     editorExport:function(){
+      return this.editor.export();
     }
   },
   watch:{
@@ -38,18 +40,22 @@ export default {
         //console.log(jsonValue)
         this.editor.import(doc.documentJSON)
       }
+    },
+    
+    editorExport:{
+      handler(newValue,oldValue){
+        if(this.loaded){
+          this.updateDocumentJSON({documentJSON:newValue,documentID:this.$route.params.id})
+        }
+      },
+      deep:true
     }
-  },
-  mounted(){
-    const documentID = this.$route.params.id
-    if(documentID != 0){
-      
-      const doc = this.documents.find(doc => doc.id = documentID) 
-      //console.log(jsonValue)
-      this.editor.import(doc.documentJSON)
-    }
+
   },
   methods: {
+    ...mapActions([
+      'updateDocumentJSON'
+    ]),
     doExport() {
       this.plainData = this.editor.export();
     },

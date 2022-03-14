@@ -5,19 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    token:"",
+    token:null,
     blocks:blocks.data,
     authenticated:false,
     user:{},
-    documents:[
-      {
-        title:"Surgical Progress Note",
-        author:"Colin Matthews",
-        contents:"",
-        created:"January 30th",
-        updated:"January 30th"
-      }
-    ],
+    documents:[]
   },
   mutations: {
     setUser(state,user){
@@ -31,6 +23,10 @@ export default new Vuex.Store({
     },
     setToken(state,token){
       state.token = token
+    },
+    setDocumentById(state,documentData){
+      const index = state.documents.findIndex(el => el.id == documentData.documentID )
+      state.documents[index].documentJSON = documentData.documentJSON
     }
   },
   actions: {
@@ -42,6 +38,18 @@ export default new Vuex.Store({
       .catch(err => {
         console.log(err)
       })
-    }
+    },
+
+    async updateDocumentJSON({commit,state},documentData){
+      let url = process.env.VUE_APP_FUNCTIONS_URL +"/documents/id"
+      await this.$http.put(url, documentData, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
+        commit("setDocumentById",documentData)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
   },
+
+  
 })
