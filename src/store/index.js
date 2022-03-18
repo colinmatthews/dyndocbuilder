@@ -25,6 +25,7 @@ export default new Vuex.Store({
       state.token = token
     },
     setDocumentById(state,documentData){
+      console.log(documentData)
       const index = state.documents.findIndex(el => el.id == documentData.documentID )
       state.documents[index].documentJSON = documentData.documentJSON
     }
@@ -41,9 +42,20 @@ export default new Vuex.Store({
     },
 
     async updateDocumentJSON({commit,state},documentData){
+      
       let url = process.env.VUE_APP_FUNCTIONS_URL +"/documents/id"
       await this.$http.put(url, documentData, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
         commit("setDocumentById",documentData)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
+
+    async getUser({commit,state}){
+      let url = process.env.VUE_APP_FUNCTIONS_URL +"/users"
+      await this.$http.get(url, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
+        commit("setUser",res.data)
       })
       .catch(err => {
         console.log(err)

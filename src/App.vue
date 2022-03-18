@@ -96,12 +96,12 @@ export default {
  },
  methods:{
   ...mapMutations([
-    'setUser',
     'setAuthenticated',
     'setToken'
   ]),
   ...mapActions([
-    'getDocuments'
+    'getDocuments',
+    'getUser'
   ])
  },
   mounted(){
@@ -110,7 +110,7 @@ export default {
       if (user) {
         const token = await user.getIdToken(true)
         this.setToken(token)
-        this.setUser(user)
+        this.getUser()
         this.setAuthenticated(true)
         this.getDocuments()
       }

@@ -46,10 +46,29 @@
               <div class="mt-6">
                 <dl class="divide-y divide-gray-200">
                   <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:pt-5">
+                    <dt class="text-md font-lg text-gray-700">Display Name</dt>
+                    <dd class="mt-1 flex text-md text-gray-900 sm:mt-0 sm:col-span-2" v-if="!showEmailFields">
+                      <!-- Read email -->
+                        <span class="flex-grow">{{user.displayName}}</span>
+                        <span class="ml-4 flex-shrink-0">
+                          <button type="button" class=" rounded-md font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Update</button>
+                        </span>
+                      </dd>
+                      <!-- Change email -->
+                      <dd class="mt-1 flex text-md text-gray-900 sm:mt-0 sm:col-span-2" v-if="showEmailFields">
+                        <input type="email" name="email" id="email" v-model="newEmail" style="width:50%" class=" shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block py-2 px-2  border-gray-300 rounded-md" :placeholder="user.email" />
+                        <p class="mt-2 text-sm text-red-600 pl-2" id="email-error" v-if="newEmailError">Failed to save email!</p>
+                        <span class="flex-grow"></span>
+                        <span class="ml-4 flex-shrink-0">
+                          <button type="button" class=" rounded-md font-medium py-2" @click="setNewEmail()">Save</button>
+                        </span>
+                    </dd>
+                  </div>
+                  <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:pt-5">
                     <dt class="text-md font-lg text-gray-700">Email</dt>
                     <dd class="mt-1 flex text-md text-gray-900 sm:mt-0 sm:col-span-2" v-if="!showEmailFields">
                       <!-- Read email -->
-                        <span class="flex-grow">{{user.email}}</span>
+                        <span class="flex-grow">{{firebaseUser.email}}</span>
                         <span class="ml-4 flex-shrink-0">
                           <button type="button" @click="showEmailFields = true" class=" rounded-md font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Update</button>
                         </span>
@@ -86,6 +105,7 @@
 
 <script>
 import { getAuth, sendEmailVerification, updateEmail  } from "firebase/auth";
+import {mapState} from 'vuex'
 export default {
   data(){
     return{
@@ -99,11 +119,14 @@ export default {
     }
   },
  computed:{
-   user:function(){
+   firebaseUser:function(){
       const auth = getAuth();
       const user = auth.currentUser;
       return user
-   }
+   },
+   ...mapState([
+     'user'
+   ])
  },
  methods:{
    resendVerification:async function(){

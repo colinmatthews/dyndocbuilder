@@ -11,7 +11,7 @@
 
 <script>
 import EditorFetchState from '../helpers/EditorFetchState.js'
-import { mapState,mapActions } from 'vuex';
+import { mapState } from 'vuex';
 export default {
   inject: [
     'editor',
@@ -26,36 +26,10 @@ export default {
     ...mapState([
       'blocks',
       'documents'
-    ]),
-     editorExport:function(){
-      return this.editor.export();
-    }
+    ])
   },
-  watch:{
-    '$route'(to,from){
-      const documentID = this.$route.params.id
-      if(documentID != 0){
-        
-        const doc = this.documents.find(doc => doc.id = documentID) 
-        //console.log(jsonValue)
-        this.editor.import(doc.documentJSON)
-      }
-    },
-    
-    editorExport:{
-      handler(newValue,oldValue){
-        if(this.loaded){
-          this.updateDocumentJSON({documentJSON:newValue,documentID:this.$route.params.id})
-        }
-      },
-      deep:true
-    }
 
-  },
   methods: {
-    ...mapActions([
-      'updateDocumentJSON'
-    ]),
     doExport() {
       this.plainData = this.editor.export();
     },

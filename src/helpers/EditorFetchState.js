@@ -1,4 +1,4 @@
-import { mapState,mapActions } from 'vuex';
+import { mapState,mapActions,mapGetters } from 'vuex';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 export default {
   inject: [
@@ -6,7 +6,8 @@ export default {
   ],
   data() {
     return {
-      loaded:false
+      loaded:false,
+      documentID:""
     };
   },
   computed:{
@@ -14,13 +15,17 @@ export default {
       'documents',
       'token'
     ]),
+    document:function(){
+      return this.$store.getters.getDocumentById(this.documentID)
+    },
      editorExport:function(){
       return this.editor.export();
     }
   },
   watch:{
+    
     '$route'(to,from){
-      const documentID = this.$route.params.id
+      const documentID = to.params.id
       if(documentID != 0){
         
         const doc = this.documents.find(doc => doc.id = documentID) 
@@ -29,19 +34,22 @@ export default {
       }
     },
     
+    
     editorExport:{
       handler(newValue,oldValue){
+        console.log(this.documentID)
         if(this.loaded){
-          this.updateDocumentJSON({documentJSON:newValue,documentID:this.$route.params.id})
+          this.updateDocumentJSON({documentJSON:newValue,documentID:this.documentID})
         }
       },
       deep:true
     },
+    
     documents(newValue,oldValue){
       if(oldValue.length < 1){
-        const documentID = this.$route.params.id
+       
 
-        if(documentID != 0){
+        if(this.documentID != 0){
           const doc = this.documents.find(doc => doc.id = documentID) 
           //console.log(jsonValue)
           this.editor.import(doc.documentJSON)
@@ -54,10 +62,11 @@ export default {
     if(this.documents.length >= 1){
       const documentID = this.$route.params.id
       if(documentID != 0){
-        const doc = this.documents.find(doc => doc.id = documentID) 
+        const doc = this.documents.find(doc => doc.id == documentID) 
         //console.log(jsonValue)
         this.editor.import(doc.documentJSON)
         this.loaded = true
+        this.documentID = documentID
       } 
     }
   },

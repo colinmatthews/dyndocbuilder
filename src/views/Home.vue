@@ -87,7 +87,7 @@
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
-                <tr v-for="document in documents" :key="document.title">
+                <tr v-for="document in documents" :key="document.id">
                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {{ document.title }}
                   </td>
@@ -122,9 +122,24 @@ export default {
     }
   },
   computed:{
-    ...mapState(['documents'])
+    ...mapState([
+      'documents',
+      'user'
+    ]),
+    documentsByLastViewed:function(){
+      if(this.user.viewed){
+        const viewed = this.user.viewed
+        let tempDocument
+        let documentsOrdered = []
+        for( let id of viewed){
+          tempDocument = this.documents.find(doc => doc.id == id)
+          console.log(tempDocument)
+          documentsOrdered.push(tempDocument)
+        }
+        return documentsOrdered
+      }
+    }
   }
-
 }
 </script>
 
