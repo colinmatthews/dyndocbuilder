@@ -87,7 +87,7 @@
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
-                <tr v-for="document in documents" :key="document.id">
+                <tr v-for="document in documentsByLastViewed" :key="document.id">
                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                     {{ document.title }}
                   </td>

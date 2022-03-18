@@ -28,6 +28,9 @@ export default new Vuex.Store({
       console.log(documentData)
       const index = state.documents.findIndex(el => el.id == documentData.documentID )
       state.documents[index].documentJSON = documentData.documentJSON
+    },
+    setDocumentFirst(state,order){
+     Vue.set(state.user,'viewed',order)
     }
   },
   actions: {
@@ -35,6 +38,24 @@ export default new Vuex.Store({
       let url = process.env.VUE_APP_FUNCTIONS_URL +"/documents/"
       await this.$http.get(url, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
         commit('setDocuments',res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
+
+    async updateRecentlyViewed({commit,state},documentID){
+      let url = process.env.VUE_APP_FUNCTIONS_URL +"/users/id"
+
+      let order = state.user.viewed
+      const id = state.documents.find(el => el.id == documentID ).id
+      order = order.filter(item => item !== id);
+      order.unshift(id);
+
+
+      const data = {viewed:order}
+      await this.$http.put(url,data, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
+        commit('setDocumentFirst',order)
       })
       .catch(err => {
         console.log(err)

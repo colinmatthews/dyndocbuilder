@@ -67,12 +67,16 @@ export default {
         this.editor.import(doc.documentJSON)
         this.loaded = true
         this.documentID = documentID
+        console.log('her')
+        this.updateRecentlyViewed(documentID)
+        console.log('her')
       } 
     }
   },
   methods: {
     ...mapActions([
       'updateDocumentJSON',
+      'updateRecentlyViewed'
     ]),
   }
 };
