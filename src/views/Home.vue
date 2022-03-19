@@ -82,6 +82,9 @@
                     Updated
                   </th>
                   <th scope="col" class="relative px-6 py-3">
+                    <span class="sr-only">Delete</span>
+                  </th>
+                  <th scope="col" class="relative px-6 py-3">
                     <span class="sr-only">Edit</span>
                   </th>
                 </tr>
@@ -98,6 +101,9 @@
                     {{ new Date(document.updated).toLocaleDateString() }}
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <p class="text-red-500 hover:text-red-900" @click="showConfirmDeleteModal(document)">Delete</p>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <router-link :to="'/editor-' + document.type +'/' + document.id" class="text-indigo-600 hover:text-indigo-900">Edit</router-link>
                   </td>
                 </tr>
@@ -107,7 +113,8 @@
         </div>
       </div>
     </div>
-  
+
+    <ConfirmDeleteModal v-if="showModal" v-on:close="showModal = false" :title="propTitle" :documentID="propDocumentID"/>
 
 </div>
 </template>
@@ -115,11 +122,18 @@
 <script>
 import {mapState,mapActions} from 'vuex'
 import {BIconLayoutSidebarInsetReverse,BIconFile} from 'bootstrap-vue'
+import ConfirmDeleteModal from '../components/ConfirmDeleteModal.vue'
 
 export default {
   data(){
     return{
+      showModal:false,
+      propTitle:"",
+      propDocumentID:""
     }
+  },
+  components:{
+    ConfirmDeleteModal
   },
   computed:{
     ...mapState([
@@ -147,6 +161,11 @@ export default {
     ]),
     createDocumentHandler:async function(type){
       await this.createDocument(type)
+    },
+    showConfirmDeleteModal(document){
+      this.propTitle = document.title
+      this.propDocumentID = document.id
+      this.showModal = true
     }
   }
 }

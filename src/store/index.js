@@ -34,7 +34,7 @@ export default new Vuex.Store({
       const index = state.documents.findIndex(el => el.id == documentData.documentID )
       state.documents[index].documentJSON = documentData.documentJSON
     },
-    setDocumentFirst(state,order){
+    setRecentlyViewed(state,order){
      Vue.set(state.user,'viewed',order)
     },
     appendDocument(state,document){
@@ -43,6 +43,10 @@ export default new Vuex.Store({
     updateDocumentTitle(state,documentData){
       const index = state.documents.findIndex(el => el.id == documentData.documentID )
       Vue.set(state.documents[index],'title',documentData.title)
+    },
+    deleteDocument(state,documentID){
+      const updatedDocuments = state.documents.filter(el => el.id != documentID)
+      state.documents = updatedDocuments
     }
   },
   actions: {
@@ -65,7 +69,19 @@ export default new Vuex.Store({
 
       const data = {viewed:order}
       await this.$http.put(url,data, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
-        commit('setDocumentFirst',order)
+        commit('setRecentlyViewed',order)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
+
+    async removeRecentlyViewed({commit,state},documentID){
+      let url = process.env.VUE_APP_FUNCTIONS_URL +"/users/id"
+      const order = state.user.viewed.filter(item => item !== documentID);
+      const data = {viewed:order}
+      await this.$http.put(url,data, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
+        commit('setRecentlyViewed',order)
       })
       .catch(err => {
         console.log(err)
@@ -114,7 +130,16 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
-  },
 
-  
+    async deleteDocument({commit,state,dispatch},documentID){
+      let url = process.env.VUE_APP_FUNCTIONS_URL +"/documents/id"
+      await this.$http.delete(url, {headers: {"Authorization" : "Bearer " + state.token}, data:{documentID:documentID}}).then(res => {
+        commit("deleteDocument",documentID)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+      await dispatch('removeRecentlyViewed',documentID)
+    },
+  }
 })
