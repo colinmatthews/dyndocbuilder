@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import blocks from './blocks'
+import router from '../router/index'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -9,7 +10,7 @@ export default new Vuex.Store({
     blocks:blocks.data,
     authenticated:false,
     user:{},
-    documents:[]
+    documents:[],
   },
   mutations: {
     setUser(state,user){
@@ -31,6 +32,9 @@ export default new Vuex.Store({
     },
     setDocumentFirst(state,order){
      Vue.set(state.user,'viewed',order)
+    },
+    appendDocument(state,document){
+      state.documents.push(document)
     }
   },
   actions: {
@@ -46,12 +50,10 @@ export default new Vuex.Store({
 
     async updateRecentlyViewed({commit,state},documentID){
       let url = process.env.VUE_APP_FUNCTIONS_URL +"/users/id"
-
       let order = state.user.viewed
       const id = state.documents.find(el => el.id == documentID ).id
       order = order.filter(item => item !== id);
       order.unshift(id);
-
 
       const data = {viewed:order}
       await this.$http.put(url,data, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
@@ -63,7 +65,6 @@ export default new Vuex.Store({
     },
 
     async updateDocumentJSON({commit,state},documentData){
-      
       let url = process.env.VUE_APP_FUNCTIONS_URL +"/documents/id"
       await this.$http.put(url, documentData, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
         commit("setDocumentById",documentData)
@@ -77,6 +78,19 @@ export default new Vuex.Store({
       let url = process.env.VUE_APP_FUNCTIONS_URL +"/users"
       await this.$http.get(url, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
         commit("setUser",res.data)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
+
+    async createDocument({commit,state},type){
+      let url = process.env.VUE_APP_FUNCTIONS_URL +"/documents"
+      const data = {type:type}
+      await this.$http.post(url,data, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
+        commit("appendDocument",res.data)
+        const redirectString = "editor-" + type +"/" + res.data.id
+        router.push(redirectString)
       })
       .catch(err => {
         console.log(err)

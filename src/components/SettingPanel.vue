@@ -55,4 +55,7 @@ export default {
   height: 50px;
   width: 100%;
 }
+.settings{
+  min-width: 60%;
+}
 </style>

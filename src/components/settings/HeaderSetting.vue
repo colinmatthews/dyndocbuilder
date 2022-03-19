@@ -1,7 +1,7 @@
 <template>
   <div style="display:flex;" class="w-full">
     <p class="label">Title</p>
-    <input class="form-control mx-2" v-model="content" />
+    <input class="form-control mx-2"  v-model="content" />
     <div class="pl-3 pt-2">
       <div class="flex items-center h-5 mr-2">
           <input id="comments" aria-describedby="comments-description" name="comments" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" v-model="refresh" /> 

@@ -22,7 +22,7 @@
         </div>
         <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
           <button 
-          @click="$router.push('/editor-single/0')"
+          @click="createDocumentHandler('single')"
           type="button" 
           class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
             Create
@@ -45,7 +45,7 @@
         </div>
         <div class="mt-5 sm:mt-0 sm:ml-6 sm:flex-shrink-0 sm:flex sm:items-center">
           <button type="button" 
-          @click="$router.push('editor-double/0')"
+          @click="createDocumentHandler('double')"
           class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
             Create
           </button>
@@ -113,7 +113,7 @@
 </template>
 
 <script>
-import {mapState} from 'vuex'
+import {mapState,mapActions} from 'vuex'
 import {BIconLayoutSidebarInsetReverse,BIconFile} from 'bootstrap-vue'
 
 export default {
@@ -124,7 +124,8 @@ export default {
   computed:{
     ...mapState([
       'documents',
-      'user'
+      'user',
+      'newDocumentID'
     ]),
     documentsByLastViewed:function(){
       if(this.user.viewed){
@@ -138,6 +139,14 @@ export default {
         }
         return documentsOrdered
       }
+    }
+  },
+  methods:{
+    ...mapActions([
+      'createDocument'
+    ]),
+    createDocumentHandler:async function(type){
+      await this.createDocument(type)
     }
   }
 }
