@@ -34,15 +34,22 @@
 <script>
 import {mapState} from 'vuex'
 import {Blueprint, Canvas} from '@v-craft/core'
+import fuzzysort from 'fuzzysort'
 
 export default {
   components:{
     Blueprint,Canvas,
   },
   computed:{
-    ...mapState(['blocks']),
+    ...mapState(['blocks','blockSearch']),
     filteredBlocks(){
-      return this.blocks.filter(el => el.id!== 4 && el.id !== 5 && el.id !== 1)
+      const filtered = this.blocks.filter(el => el.id!== 4 && el.id !== 5 && el.id !== 1)
+      if(this.blockSearch == null || this.blockSearch == ""){
+         return filtered
+      }
+      const results = fuzzysort.go(this.blockSearch,filtered,{key:'title'})
+      const output = results.map( x => x.obj)
+      return output
     }
   },
   method:{

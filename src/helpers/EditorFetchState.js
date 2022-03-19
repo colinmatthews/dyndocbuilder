@@ -68,6 +68,7 @@ export default {
         this.loaded = true
         this.documentID = documentID
         this.updateRecentlyViewed(documentID)
+        this.$store.commit("setBlockSearch","")
       } 
     }
   },

@@ -90,18 +90,18 @@
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
-                <tr v-for="document in documentsByLastViewed" :key="document.id">
-                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                <tr v-for="document in documentsByLastViewed" :key="document.id" >
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" @click="openDocument({type:document.type,id:document.id})">
                     {{ document.title }}
                   </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" @click="openDocument({type:document.type,id:document.id})">
                     {{ document.authorDisplayName }}
                   </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" @click="openDocument({type:document.type,id:document.id})">
                     {{ new Date(document.updated).toLocaleDateString() }}
                   </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                    <p class="text-red-500 hover:text-red-900" @click="showConfirmDeleteModal(document)">Delete</p>
+                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium cursor-pointer">
+                    <button class="text-red-500 hover:text-red-900 " @click="showConfirmDeleteModal(document)">Delete</button>
                   </td>
                   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                     <router-link :to="'/editor-' + document.type +'/' + document.id" class="text-indigo-600 hover:text-indigo-900">Edit</router-link>
@@ -166,6 +166,10 @@ export default {
       this.propTitle = document.title
       this.propDocumentID = document.id
       this.showModal = true
+    },
+    openDocument(documentData){
+      const {type,id} = documentData
+      this.$router.push('/editor-' + type +'/' + id)
     }
   }
 }

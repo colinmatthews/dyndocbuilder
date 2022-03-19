@@ -15,6 +15,7 @@
     "bootstrap-vue": "^2.21.2",
     "core-js": "^3.6.5",
     "firebase": "^9.6.8",
+    "fuzzysort": "^1.2.1",
     "lodash": "^4.17.21",
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat@^2.2.17",

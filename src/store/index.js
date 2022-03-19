@@ -11,11 +11,19 @@ export default new Vuex.Store({
     authenticated:false,
     user:{},
     documents:[],
-    currentDocument:{}
+    currentDocument:{},
+    blockSearch:"",
+    documentSearch:""
   },
   mutations: {
     setUser(state,user){
       state.user = user
+    },
+    setBlockSearch(state,string){
+      state.blockSearch = string
+    },
+    setDocumentSearch(state,string){
+      state.documentSearch = string
     },
     setCurrentDocument(state,document){
       state.currentDocument = document
