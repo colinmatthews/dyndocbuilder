@@ -39,6 +39,10 @@ export default new Vuex.Store({
     },
     appendDocument(state,document){
       state.documents.push(document)
+    },
+    updateDocumentTitle(state,documentData){
+      const index = state.documents.findIndex(el => el.id == documentData.documentID )
+      Vue.set(state.documents[index],'title',documentData.title)
     }
   },
   actions: {
@@ -95,6 +99,16 @@ export default new Vuex.Store({
         commit("appendDocument",res.data)
         const redirectString = "editor-" + type +"/" + res.data.id
         router.push(redirectString)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+    },
+
+    async updateTitle({commit,state},documentData){
+      let url = process.env.VUE_APP_FUNCTIONS_URL +"/documents/id"
+      await this.$http.put(url, documentData, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
+        commit("updateDocumentTitle",documentData)
       })
       .catch(err => {
         console.log(err)

@@ -23,7 +23,7 @@
             <div class="relative z-10 flex-shrink-0 h-16 bg-white border-b border-gray-200 shadow-sm flex">
               <div class="flex-1 flex justify-center px-4 sm:px-6">
                 <div class="ml-auto pt-3" style="padding-left:20%">
-                  <h1 class="text-lg font-medium">{{currentDocument.title}}</h1>
+                  <Title />
                 </div>
                 <div class="flex items-center space-x-4 sm:ml-6 sm:space-x-6" style="margin-left:auto">
                   <!-- Profile dropdown -->
@@ -70,6 +70,7 @@ import TwoColumms from '../components/TwoColumns.vue'
 import SingleColumn from '../components/SingleColumn.vue';
 import TopNav from '../components/TopNav.vue'
 import Export from '../components/Export.vue'
+import Title from '../components/TitleComponent.vue'
 
 import Allergies from '../components/elements/Allergies.vue'
 import AssessmentAndPlan from '../components/elements/AssessmentAndPlan.vue'
@@ -97,6 +98,7 @@ export default {
     TwoColumms,
     SingleColumn,
     Export,
+    Title
   },
  
   data() {
