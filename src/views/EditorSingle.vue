@@ -21,11 +21,11 @@
         <div class="flex-1 flex flex-col overflow-hidden">
           <header class="w-full">
             <div class="relative z-10 flex-shrink-0 h-16 bg-white border-b border-gray-200 shadow-sm flex">
-              <div class="flex-1 flex justify-between px-4 sm:px-6">
-                <div class="flex-1 flex mt 4">
-  
+              <div class="flex-1 flex justify-center px-4 sm:px-6">
+                <div class="ml-auto pt-3" style="padding-left:20%">
+                  <h1 class="text-lg font-medium">{{currentDocument.title}}</h1>
                 </div>
-                <div class="ml-2 flex items-center space-x-4 sm:ml-6 sm:space-x-6">
+                <div class="flex items-center space-x-4 sm:ml-6 sm:space-x-6" style="margin-left:auto">
                   <!-- Profile dropdown -->
                   <div as="div" class="relative flex-shrink-0">
                     <div>
@@ -86,6 +86,7 @@ import AdvancedDirectivePhys from '../components/elements/AdvancedDirectivePhys.
 import AssessmentAndPlanOutpatient from '../components/elements/AssessmentAndPlanOutpatient.vue'
 import AssessmentAndPlanInpatient from '../components/elements/AssessmentAndPlanInpatient.vue'
 import BehavioralHealthIssues from '../components/elements/BehaviouralHealthIssues.vue'
+import { mapState } from "vuex";
 
 export default {
   name: 'App',
@@ -123,6 +124,11 @@ export default {
       },
     };
   },
+  computed:{
+    ...mapState([
+      'currentDocument'
+    ])
+  }
   
   
 }

@@ -1,4 +1,4 @@
-import { mapState,mapActions,mapGetters } from 'vuex';
+import { mapState,mapActions,mapMutations } from 'vuex';
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 export default {
   inject: [
@@ -63,13 +63,11 @@ export default {
       const documentID = this.$route.params.id
       if(documentID != 0){
         const doc = this.documents.find(doc => doc.id == documentID) 
-        //console.log(jsonValue)
         this.editor.import(doc.documentJSON)
+        this.$store.commit('setCurrentDocument',doc)
         this.loaded = true
         this.documentID = documentID
-        console.log('her')
         this.updateRecentlyViewed(documentID)
-        console.log('her')
       } 
     }
   },
@@ -78,5 +76,5 @@ export default {
       'updateDocumentJSON',
       'updateRecentlyViewed'
     ]),
-  }
+  },
 };

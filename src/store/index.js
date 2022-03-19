@@ -11,10 +11,14 @@ export default new Vuex.Store({
     authenticated:false,
     user:{},
     documents:[],
+    currentDocument:{}
   },
   mutations: {
     setUser(state,user){
       state.user = user
+    },
+    setCurrentDocument(state,document){
+      state.currentDocument = document
     },
     setAuthenticated(state,boolean){
       state.authenticated = boolean
