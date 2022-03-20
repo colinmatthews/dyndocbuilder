@@ -23,7 +23,7 @@
     <body class="h-full">
     ```
   -->
-  <div class="min-h-full flex w-full bg-white">
+  <div class="min-h-full flex w-full bg-white" tabindex="0" @keydown="handleKeyDown($event)">
     <div class="flex-1 flex flex-col justify-center mx-48 py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
       <div class="mx-auto w-full max-w-sm lg:w-96">
         <div>
@@ -92,8 +92,14 @@ export default {
       catch{
         console.log("error logging in")
       }
+    },
+    handleKeyDown(e){
+      if(e.key == "Enter" || e.key == "Return"){
+          this.login()
+      }
     }
   }
+  
 }
 </script>
 <style>
