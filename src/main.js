@@ -16,8 +16,13 @@ import './assets/tailwind.css'
 import firebaseConfig from "./helpers/firebase"
 import axios from 'axios'
 
+import Toast from "vue-toastification";
+// Import the CSS or use your own!
+import "vue-toastification/dist/index.css";
+
 Vue.use(BootstrapVue)
 Vue.use(BootstrapVueIcons)
+Vue.use(Toast);
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);

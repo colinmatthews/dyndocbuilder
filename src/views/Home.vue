@@ -95,12 +95,10 @@
                   <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                     Updated
                   </th>
-                  <th scope="col" class="relative px-6 py-3">
+                  <th scope="col" class="relative  py-3">
                     <span class="sr-only">Delete</span>
                   </th>
-                  <th scope="col" class="relative px-6 py-3">
-                    <span class="sr-only">Edit</span>
-                  </th>
+                
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
@@ -114,10 +112,8 @@
                   <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500" @click="openDocument({type:document.type,id:document.id})">
                     {{ new Date(document.updated).toLocaleDateString() }}
                   </td>
-                  <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium cursor-pointer">
-                    <button class="text-red-500 hover:text-red-900 " @click="showConfirmDeleteModal(document)">Delete</button>
-                  </td>
                   <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                    <button class="text-red-500 hover:text-red-900 pr-12 " @click="showConfirmDeleteModal(document)">Delete</button>
                     <router-link :to="'/editor-' + document.type +'/' + document.id" class="text-indigo-600 hover:text-indigo-900">Edit</router-link>
                   </td>
                 </tr>

@@ -25,7 +25,7 @@
             </div>
 
             <!-- Alert for non-verified email -->
-            <div class="rounded-md bg-yellow-50 p-4 mt-8 border" v-if="!user.emailVerified">
+            <div class="rounded-md bg-yellow-50 p-4 mt-8 border" v-if="!firebaseUser.emailVerified">
               <div class="flex">
                 <div class="flex-shrink-0">
                   <BIconExclamationCircle class="h3 text-yellow-500" />
@@ -47,20 +47,19 @@
                 <dl class="divide-y divide-gray-200">
                   <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:pt-5">
                     <dt class="text-md font-lg text-gray-700">Display Name</dt>
-                    <dd class="mt-1 flex text-md text-gray-900 sm:mt-0 sm:col-span-2" v-if="!showEmailFields">
-                      <!-- Read email -->
+                    <dd class="mt-1 flex text-md text-gray-900 sm:mt-0 sm:col-span-2" v-if="!showDisplayNameFields">
+                      <!-- Read display name -->
                         <span class="flex-grow">{{user.displayName}}</span>
                         <span class="ml-4 flex-shrink-0">
-                          <button type="button" class=" rounded-md font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Update</button>
+                          <button type="button" @click="showDisplayNameFields = true" class=" rounded-md font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Update</button>
                         </span>
                       </dd>
-                      <!-- Change email -->
-                      <dd class="mt-1 flex text-md text-gray-900 sm:mt-0 sm:col-span-2" v-if="showEmailFields">
-                        <input type="email" name="email" id="email" v-model="newEmail" style="width:50%" class=" shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block py-2 px-2  border-gray-300 rounded-md" :placeholder="user.email" />
-                        <p class="mt-2 text-sm text-red-600 pl-2" id="email-error" v-if="newEmailError">Failed to save email!</p>
+                      <!-- Change display name -->
+                      <dd class="mt-1 flex text-md text-gray-900 sm:mt-0 sm:col-span-2" v-if="showDisplayNameFields">
+                        <input type="email" name="email" id="email" v-model="newDisplayName" style="width:50%" class=" shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block py-2 px-2  border-gray-300 rounded-md" :placeholder="user.displayName" />
                         <span class="flex-grow"></span>
                         <span class="ml-4 flex-shrink-0">
-                          <button type="button" class=" rounded-md font-medium py-2" @click="setNewEmail()">Save</button>
+                          <button type="button" class=" rounded-md font-medium py-2" @click="handleUpdateUserDisplayName()">Save</button>
                         </span>
                     </dd>
                   </div>
@@ -70,7 +69,7 @@
                       <!-- Read email -->
                         <span class="flex-grow">{{firebaseUser.email}}</span>
                         <span class="ml-4 flex-shrink-0">
-                          <button type="button" @click="showEmailFields = true" class=" rounded-md font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Update</button>
+                          <button type="button" @click="handleShowEmailFields()" class=" rounded-md font-medium text-purple-600 hover:text-purple-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500">Update</button>
                         </span>
                       </dd>
                       <!-- Change email -->
@@ -105,7 +104,7 @@
 
 <script>
 import { getAuth, sendEmailVerification, updateEmail  } from "firebase/auth";
-import {mapState} from 'vuex'
+import {mapActions, mapState} from 'vuex'
 export default {
   data(){
     return{
@@ -114,8 +113,10 @@ export default {
       ],
       alertText:"Resend verification",
       showEmailFields:false,
+      showDisplayNameFields:false,
       newEmail:"",
       newEmailError:"",
+      newDisplayName:"",
     }
   },
  computed:{
@@ -125,10 +126,14 @@ export default {
       return user
    },
    ...mapState([
-     'user'
+     'user',
+     'reauthRequired'
    ])
  },
  methods:{
+   ...mapActions([
+     'updateUserDisplayName'
+   ]),
    resendVerification:async function(){
      try{
       const auth = getAuth();
@@ -152,6 +157,19 @@ export default {
        console.log(err)
        this.newEmailError = err
      }
+   },
+   handleUpdateUserDisplayName:function(){
+     this.updateUserDisplayName(this.newDisplayName)
+     this.showDisplayNameFields = false
+   },
+   handleShowEmailFields:function(){
+     if(this.reauthRequired){
+        this.$store.commit('setReauthRequired',false)
+        this.$toast.info("Sorry, you need to reauthenticate before performing that action",{timeout:3000})
+        this.$router.push("/login") 
+        return
+     }
+     this.showEmailFields = true
    }
  }
 

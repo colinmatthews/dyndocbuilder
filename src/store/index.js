@@ -13,6 +13,7 @@ export default new Vuex.Store({
     documents:[],
     currentDocument:{},
     blockSearch:"",
+    reauthRequired:true
   },
   mutations: {
     setUser(state,user){
@@ -32,6 +33,12 @@ export default new Vuex.Store({
     },
     setToken(state,token){
       state.token = token
+    },
+    setUserDisplayName(state,displayName){
+      state.user.displayName = displayName
+    },
+    setReauthRequired(state,boolean){
+      state.reauthRequired = boolean
     },
     setDocumentById(state,documentData){
       console.log(documentData)
@@ -144,6 +151,16 @@ export default new Vuex.Store({
         console.log(err)
       })
       await dispatch('removeRecentlyViewed',documentID)
+    },
+
+    async updateUserDisplayName({commit,state},displayName){
+      let url = process.env.VUE_APP_FUNCTIONS_URL +"/users/id"
+      await this.$http.put(url, {displayName:displayName}, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
+        commit("setUserDisplayName",displayName)
+      })
+      .catch(err => {
+        console.log(err)
+      })
     },
   }
 })
