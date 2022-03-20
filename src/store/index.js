@@ -13,7 +13,6 @@ export default new Vuex.Store({
     documents:[],
     currentDocument:{},
     blockSearch:"",
-    documentSearch:""
   },
   mutations: {
     setUser(state,user){
@@ -21,9 +20,6 @@ export default new Vuex.Store({
     },
     setBlockSearch(state,string){
       state.blockSearch = string
-    },
-    setDocumentSearch(state,string){
-      state.documentSearch = string
     },
     setCurrentDocument(state,document){
       state.currentDocument = document

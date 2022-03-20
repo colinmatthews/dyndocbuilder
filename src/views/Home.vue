@@ -59,12 +59,26 @@
   
   <!-- This example requires Tailwind CSS v2.0+ -->
  
-    <div class="pb-3 mt-12 px-4">
+    <div class="pb-3 mt-12 px-4 flex">
       <h3 class="text-2xl leading-6 font-medium text-gray-900">
         Recently Viewed
       </h3>
     </div>
-
+    <div class="flex px-4 pb-2">
+      <div class="flex">
+        <p class="text-sm text-purple-700 cursor-pointer">My Documents</p>
+        <p class="text-sm pl-4 cursor-pointer">All Documents</p>
+      </div>
+       <div class="border-b ml-auto">
+        <label for="search" class="sr-only">Search</label>
+        <div class="relative">
+          <div class="pointer-events-none absolute inset-y-0 left-0 pl-3 flex items-center">
+            <b-icon-search class=""></b-icon-search>
+          </div>
+          <input v-model="documentSearch" id="search" style="height:50px; min-width:300px" name="search" class="block w-full bg-white rounded shadow-sm py-2 pl-10 pr-3 text-sm placeholder-gray-400 focus:outline-none focus:bg-white focus:border-white focus:ring-white focus:text-gray-900 focus:placeholder-gray-500 sm:text-sm" placeholder="Search" type="search" />
+        </div>
+      </div>
+    </div>
     <div class="flex flex-col px-4  ">
       <div class="-my-2 overflow-x-auto sm:-mx-6 lg:-mx-8 ">
         <div class="py-2 align-middle inline-block min-w-full sm:px-6 lg:px-8">
@@ -90,7 +104,7 @@
                 </tr>
               </thead>
               <tbody class="bg-white divide-y divide-gray-200">
-                <tr v-for="document in documentsByLastViewed" :key="document.id" >
+                <tr v-for="document in lastViewedWithSearch" :key="document.id" >
                   <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900" @click="openDocument({type:document.type,id:document.id})">
                     {{ document.title }}
                   </td>
@@ -123,13 +137,15 @@
 import {mapState,mapActions} from 'vuex'
 import {BIconLayoutSidebarInsetReverse,BIconFile} from 'bootstrap-vue'
 import ConfirmDeleteModal from '../components/ConfirmDeleteModal.vue'
+import fuzzysort from 'fuzzysort'
 
 export default {
   data(){
     return{
       showModal:false,
       propTitle:"",
-      propDocumentID:""
+      propDocumentID:"",
+      documentSearch:""
     }
   },
   components:{
@@ -153,6 +169,15 @@ export default {
         }
         return documentsOrdered
       }
+    },
+    lastViewedWithSearch:function(){
+      const filtered = this.documentsByLastViewed
+      if(this.documentSearch == null || this.documentSearch == ""){
+         return filtered
+      }
+      const results = fuzzysort.go(this.documentSearch,filtered,{key:'title'})
+      const output = results.map( x => x.obj)
+      return output
     }
   },
   methods:{

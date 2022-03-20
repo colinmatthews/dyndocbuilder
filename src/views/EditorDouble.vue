@@ -18,14 +18,14 @@
       <!-- Main content -->
       <Editor component='div' class="w-full" :resolverMap="resolverMap">
         <!-- Header bar -->
-        <div class="flex-1 flex flex-col overflow-hidden">
+         <div class="flex-1 flex flex-col overflow-hidden">
           <header class="w-full">
             <div class="relative z-10 flex-shrink-0 h-16 bg-white border-b border-gray-200 shadow-sm flex">
-              <div class="flex-1 flex justify-between px-4 sm:px-6">
-                <div class="flex-1 flex mt 4">
-  
+              <div class="flex-1 flex justify-center px-4 sm:px-6">
+                <div class="ml-auto pt-3" style="padding-left:20%">
+                  <Title />
                 </div>
-                <div class="ml-2 flex items-center space-x-4 sm:ml-6 sm:space-x-6">
+                <div class="flex items-center space-x-4 sm:ml-6 sm:space-x-6" style="margin-left:auto">
                   <!-- Profile dropdown -->
                   <div as="div" class="relative flex-shrink-0">
                     <div>
@@ -69,6 +69,7 @@ import LeftNav from '../components/LeftNav.vue'
 import TwoColumms from '../components/TwoColumns.vue'
 import SingleColumn from '../components/SingleColumn.vue';
 import TopNav from '../components/TopNav.vue'
+import Title from '../components/TitleComponent.vue'
 
 import ColumnLarge from '../components/elements/ColumnLarge.vue'
 import ColumnSmall from '../components/elements/ColumnSmall.vue'
@@ -84,6 +85,7 @@ import PhysicalExam from '../components/elements/PhysicalExam.vue'
 import Problems from '../components/elements/Problems.vue'
 import ReviewOfSymptoms from '../components/elements/ReviewOfSymptoms.vue'
 
+import {mapState} from 'vuex'
 export default {
   name: 'App',
   inject:[
@@ -95,6 +97,7 @@ export default {
     TopNav,
     TwoColumms,
     SingleColumn,
+    Title,
     Export,
     AssessmentAndPlan,
     ChiefComplaint,
@@ -115,6 +118,11 @@ export default {
         Canvas, Container, Paragraph,Allergies,ColumnLarge,ColumnSmall,AssessmentAndPlan,ChiefComplaint,HospitalCourse,LabResults,ColumnLarge,ColumnSmall, Medications,PhysicalExam,Problems,ReviewOfSymptoms
       }
     };
+  },
+  computed:{
+    ...mapState([
+      'currentDocument'
+    ])
   }
 }
 </script>

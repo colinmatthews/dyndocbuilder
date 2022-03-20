@@ -6,9 +6,7 @@
        </div>
        <div v-else class="flex" style="min-width:400px;">
             <label for="email" class="sr-only" v-if="editing">Title</label>
-            <input type="email" name="email" id="title" :placeholder="currentDocument.title" v-model="newTitle"
-                class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full " 
-            />
+            <input id="title" :placeholder="currentDocument.title" v-model="newTitle" class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full " />
             <BIconCheck2Square class="ml-2 mt-1 cursor-pointer" @click="handleUpdateTitle()"/>
        </div>
   </div>
