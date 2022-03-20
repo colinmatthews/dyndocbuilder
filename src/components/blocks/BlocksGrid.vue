@@ -43,7 +43,7 @@ export default {
   computed:{
     ...mapState(['blocks','blockSearch']),
     filteredBlocks(){
-      const filtered = this.blocks.filter(el => el.id!== 4 && el.id !== 5 && el.id !== 1)
+      const filtered = this.blocks.filter(el => el.id!== 4 && el.id !== 5 && el.id !== 0)
       if(this.blockSearch == null || this.blockSearch == ""){
          return filtered
       }

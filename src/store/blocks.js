@@ -4,7 +4,7 @@ export default{
           id:1,
           title:"Canvas",
           image:null,
-          component:"Canvas",
+          component:"Container",
           openTag:"<div>",
           closeTag:"</div>"
         },

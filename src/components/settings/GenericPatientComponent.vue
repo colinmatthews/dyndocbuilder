@@ -1,9 +1,11 @@
 <template lang="">
    <div
+    tabindex="0"
     class="pb-4"
     @mouseover="active = true" 
     @mouseleave="active = false" 
     :class="active ? 'bg-light' : ''"
+    @keydown.stop.prevent="handleKeyDown($event)"
   >
     <div class="inline">
       <span><u><b>{{content}}</b></u></span>
@@ -18,6 +20,9 @@
 <script>
 import { RefreshCcwIcon,DeleteIcon,CornerDownLeftIcon,EditIcon  } from 'vue-feather-icons'
 export default {
+   inject: [
+    'editor',
+  ],
   data(){
     return{
         active:false,
@@ -36,8 +41,25 @@ export default {
     deletes:Boolean,
     freetext:Boolean
   },
+  computed: {
+    selectedNode() {
+      return this.editor.selectedNode;
+    }
+  },
+  methods: {
+    handleKeyDown(e){
+      if(e.key == "Backspace" || e.key == "Delete"){
+        this.removeElement()
+      }
+    },
+    removeElement() {
+      return this.editor.removeNode(this.selectedNode);
+    },
+  }
 }
 </script>
 <style lang="">
     
 </style>
+
+  

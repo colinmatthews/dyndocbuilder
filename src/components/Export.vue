@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import EditorFetchState from '../helpers/EditorFetchState.js'
+import EditorFetchState from '../helpers/MountedFetchState.js'
 import { mapState } from 'vuex';
 export default {
   inject: [
