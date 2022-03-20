@@ -107,7 +107,7 @@ export default {
   mounted(){
     const auth = getAuth();
     onAuthStateChanged(auth, async (user) => {
-      if (user) {
+      if (user && !this.authenticated) {
         const token = await user.getIdToken(true)
         this.setToken(token)
         this.getUser()

@@ -63,7 +63,7 @@ export default new Vuex.Store({
   actions: {
     async getDocuments({commit,state}){
       let url = process.env.VUE_APP_FUNCTIONS_URL +"/documents/"
-      await this.$http.get(url, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
+      return this.$http.get(url, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
         commit('setDocuments',res.data)
       })
       .catch(err => {
