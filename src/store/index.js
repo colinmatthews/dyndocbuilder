@@ -67,6 +67,7 @@ export default new Vuex.Store({
         commit('setDocuments',res.data)
       })
       .catch(err => {
+        Vue.$toast.error("Failed to load documents. We have been notified of this error.",{timeout:10000});
         console.log(err)
       })
     },
@@ -83,6 +84,7 @@ export default new Vuex.Store({
         commit('setRecentlyViewed',order)
       })
       .catch(err => {
+        Vue.$toast.error("Failed to save document viewed order. We have been notified of this error.",{timeout:10000});
         console.log(err)
       })
     },
@@ -95,6 +97,7 @@ export default new Vuex.Store({
         commit('setRecentlyViewed',order)
       })
       .catch(err => {
+        Vue.$toast.error("Failed to save document viewed order. We have been notified of this error.",{timeout:10000});
         console.log(err)
       })
     },
@@ -105,6 +108,7 @@ export default new Vuex.Store({
         commit("setDocumentById",documentData)
       })
       .catch(err => {
+        Vue.$toast.error("Failed to save document content. We have been notified of this error.",{timeout:10000});
         console.log(err)
       })
     },
@@ -115,6 +119,7 @@ export default new Vuex.Store({
         commit("setUser",res.data)
       })
       .catch(err => {
+        Vue.$toast.error("Failed to retrieve user information. We have been notified of this error.",{timeout:10000});
         console.log(err)
       })
     },
@@ -128,6 +133,7 @@ export default new Vuex.Store({
         router.push(redirectString)
       })
       .catch(err => {
+        Vue.$toast.error("Failed to create document. We have been notified of this error.",{timeout:10000});
         console.log(err)
       })
     },
@@ -138,6 +144,7 @@ export default new Vuex.Store({
         commit("updateDocumentTitle",documentData)
       })
       .catch(err => {
+        Vue.$toast.error("Failed to update document title. We have been notified of this error.",{timeout:10000});
         console.log(err)
       })
     },
@@ -148,6 +155,7 @@ export default new Vuex.Store({
         commit("deleteDocument",documentID)
       })
       .catch(err => {
+        Vue.$toast.error("Failed to delete document. We have been notified of this error.",{timeout:10000});
         console.log(err)
       })
       await dispatch('removeRecentlyViewed',documentID)
@@ -159,6 +167,7 @@ export default new Vuex.Store({
         commit("setUserDisplayName",displayName)
       })
       .catch(err => {
+        Vue.$toast.error("Failed to update display name. We have been notified of this error.",{timeout:10000});
         console.log(err)
       })
     },
