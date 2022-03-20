@@ -11,9 +11,14 @@ export default {
     };
   },
   computed:{
+    ...mapMutations([
+      'setAuthenticated',
+      'setToken'
+    ]),
     ...mapState([
       'documents',
-      'token'
+      'token',
+      'authenticated'
     ]),
     document:function(){
       return this.$store.getters.getDocumentById(this.documentID)
@@ -33,8 +38,6 @@ export default {
         this.editor.import(doc.documentJSON)
       }
     },
-    
-    
     editorExport:{
       handler(newValue,oldValue){
         console.log(this.documentID)
@@ -44,38 +47,33 @@ export default {
       },
       deep:true
     },
-    
     documents(newValue,oldValue){
-      if(oldValue.length < 1){
-       
-
-        if(this.documentID != 0){
-          const doc = this.documents.find(doc => doc.id = documentID) 
-          //console.log(jsonValue)
-          this.editor.import(doc.documentJSON)
-          this.loaded = true
-        } 
+      if(oldValue.length == 0 || oldValue == null){
+        this.onLoad()
       }
     }
   },
-  mounted(){
-    if(this.documents.length >= 1){
-      const documentID = this.$route.params.id
-      if(documentID != 0){
-        const doc = this.documents.find(doc => doc.id == documentID) 
-        this.editor.import(doc.documentJSON)
-        this.$store.commit('setCurrentDocument',doc)
-        this.loaded = true
-        this.documentID = documentID
-        this.updateRecentlyViewed(documentID)
-        this.$store.commit("setBlockSearch","")
-      } 
+  async mounted(){
+    if (this.documents.length > 0){
+      this.onLoad()
     }
   },
   methods: {
     ...mapActions([
       'updateDocumentJSON',
-      'updateRecentlyViewed'
+      'updateRecentlyViewed',
+      'getDocuments',
     ]),
+    onLoad(){
+      const documentID = this.$route.params.id
+      const doc = this.documents.find(doc => doc.id == documentID) 
+      this.editor.import(doc.documentJSON)
+      this.$store.commit('setCurrentDocument',doc)
+      this.loaded = true
+      this.documentID = documentID
+      this.updateRecentlyViewed(documentID)
+      this.$store.commit("setBlockSearch","")
+    }
   },
+  
 };
