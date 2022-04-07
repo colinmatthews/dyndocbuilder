@@ -11,6 +11,7 @@
 
 <script>
 import EditorFetchState from '../helpers/MountedFetchState.js'
+import cernerExportWrapper from '../helpers/cernerExportWrapper'
 import { mapState } from 'vuex';
 export default {
   inject: [
@@ -39,19 +40,32 @@ export default {
     exportHelper(){
       const editorJSON = JSON.parse(this.editor.export());
       let htmlDocument
+
       //single column view
       if(editorJSON.length == 1){
-         htmlDocument = this.traverseEditorState(editorJSON[0])
+         const openHTML = cernerExportWrapper.open
+         const endHTML = cernerExportWrapper.end
+         const content = this.traverseEditorState(editorJSON[0])
+         htmlDocument = openHTML + content + endHTML
       }
       // two column view
       else if(editorJSON.length == 2){
         const columnOne = this.traverseEditorState(editorJSON[0])
         const columnTwo = this.traverseEditorState(editorJSON[1])
-        //TODO: make this the actual cerner format. Maybe import from another file to keep it clean
-        const openHTML = "<div>"
-        const closeHTML = "</div>"
-        htmlDocument = openHTML + columnOne + columnTwo + closeHTML
-
+      
+        const openHTML = cernerExportWrapper.open
+        const endHTML = cernerExportWrapper.end
+        const twoColumnOpen = cernerExportWrapper["two-column-open"]
+        const twoColumnFirstOpen = cernerExportWrapper["two-column-first-open"]
+        const twoColumnFirstEnd = cernerExportWrapper["two-column-first-end"]
+        const twoColumnSecondOpen = cernerExportWrapper["two-column-second-open"]
+        const twoColumnSecondEnd = cernerExportWrapper["two-column-second-end"]
+        const twoColumnEnd = cernerExportWrapper["two-column-end"]
+        
+        const fullColumnOne = twoColumnFirstOpen + columnOne + twoColumnFirstEnd
+        const fullColumnTwo = twoColumnSecondOpen + columnTwo +twoColumnSecondEnd
+        
+        htmlDocument = openHTML + twoColumnOpen + fullColumnOne + fullColumnTwo + twoColumnEnd + endHTML
       }
 
       this.download("document.html",htmlDocument)
