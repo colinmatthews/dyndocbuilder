@@ -5,8 +5,8 @@
     :deletes="$attrs.deletes"
     :freetext="$attrs.freetext"
     :refresh="$attrs.refresh">
-
-    <p>Pulls from Comprehensive Care Plan powerform</p>
+      <p><u><b>{{content}}</b></u></p>
+    <p><u>Special Services and Community Resources</u> - Discharge transportation</p>
   </GenericComponent>
 </template>
 <script>
@@ -18,7 +18,7 @@ export default {
   },
   craft: {
     defaultProps: {
-      content: 'Behavioral Health Issues',
+      content: 'Hospital Course',
       edit:true,
       refresh:true,
       deletes:true,
