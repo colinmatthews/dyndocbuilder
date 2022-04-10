@@ -73,15 +73,21 @@ export default {
 
     },
     traverseEditorState(jsonObj){
+      console.log(jsonObj)
     /* 
        Rescurive function
        Input: json representation of component tree
        Base state: Bottom of tree (component has no children)
        Output: HTML representation of all components in tree
     */
+   
       const block = this.blocks.filter(obj => {
+          console.log(obj)
           return obj.component == jsonObj.componentName
       })
+      
+      
+
       if(jsonObj.children.length == 0) return this.buildHTMLString(jsonObj)
       
       const openTag = block[0].openTag
@@ -100,7 +106,7 @@ export default {
         const title = jsonObj.componentName
         const blocks = this.blocks
         let block = blocks.filter(obj => {
-          return obj.title == title
+          return obj.component == title
         })
         block = block[0]
         

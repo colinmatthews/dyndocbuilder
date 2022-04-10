@@ -11,18 +11,9 @@ export default {
     };
   },
   computed:{
-    ...mapMutations([
-      'setAuthenticated',
-      'setToken'
-    ]),
     ...mapState([
       'documents',
-      'token',
-      'authenticated'
     ]),
-    document:function(){
-      return this.$store.getters.getDocumentById(this.documentID)
-    },
      editorExport:function(){
       return this.editor.export();
     }
