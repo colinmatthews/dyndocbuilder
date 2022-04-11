@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import EditorFetchState from '../helpers/MountedFetchState.js'
+import EditorFetchState from '../helpers/EditorMountedFetchState.js'
 import cernerExportWrapper from '../helpers/cernerExportWrapper'
 import { mapState } from 'vuex';
 export default {
@@ -109,8 +109,8 @@ export default {
           return obj.component == title
         })
         block = block[0]
-        
-        if(block.type){ // check for a block type in vuex
+        //TODO: add patient block type & case
+        if(block.type){ 
           switch(block.type){
             case "plaintext":
               const text = this.generatePlainText(componentProps)

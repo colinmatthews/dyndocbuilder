@@ -5,14 +5,14 @@
     :deletes="$attrs.deletes"
     :freetext="$attrs.freetext"
     :refresh="$attrs.refresh">
-      <p><u><b>{{content}}</b></u></p>
+
       <div>
         <b-table striped :items="items"></b-table>
       </div>
   </GenericComponent>
 </template>
 <script>
-import GenericComponent from '../settings/GenericPhysicianComponent.vue'
+import GenericComponent from '../settings/GenericPhysicianComponentSettings.vue'
 import HeaderSetting from '../settings/HeaderSetting.vue'
 export default {
   components:{

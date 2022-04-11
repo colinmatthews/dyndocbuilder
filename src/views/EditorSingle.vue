@@ -86,7 +86,24 @@ import AdvancedDirectivePatient from '../components/elements/AdvancedDirectivePa
 import AdvancedDirectivePhys from '../components/elements/AdvancedDirectivePhys.vue'
 import AssessmentAndPlanOutpatient from '../components/elements/AssessmentAndPlanOutpatient.vue'
 import AssessmentAndPlanInpatient from '../components/elements/AssessmentAndPlanInpatient.vue'
-import BehavioralHealthIssues from '../components/elements/BehaviouralHealthIssues.vue'
+import BehaviouralHealthIssues from '../components/elements/BehaviouralHealthIssues'
+import CareTeam from '../components/elements/CareTeam.vue'
+import DevicesAndEquipmentPhysician from '../components/elements/DevicesAndEquipmentPhysician'
+import DevicesAndEquipmentPatient from '../components/elements/DevicesAndEquipmentPatient'
+import DiagnosesListPhysician from '../components/elements/DiagnosesListPhysician'
+import DiagnosesListPatient from '../components/elements/DiagnosesListPatient'
+import DischargeDate from '../components/elements/DischargeDate'
+import DischargeDispositionPatient from '../components/elements/DischargeDispositionPatient'
+import DischargeDispositionPhysician from '../components/elements/DischargeDispositionPhysician'
+import FollowUpInstructionsPatient from '../components/elements/FollowUpInstructionsPatient'
+import FollowUpInstructionsPhysician from '../components/elements/FollowUpInstructionsPhysician'
+import FunctionalCognitivePatient from '../components/elements/FunctionalCognitivePatient'
+import FunctionalCognitivePhysician from '../components/elements/FunctionalCognitivePhysician'
+import Footnotes from '../components/elements/Footnotes'
+import HealthConcerns from '../components/elements/HealthConcerns'
+
+
+
 import { mapState } from "vuex";
 
 export default {
@@ -98,7 +115,7 @@ export default {
     TwoColumms,
     SingleColumn,
     Export,
-    Title
+    Title,
   },
  
   data() {
@@ -121,7 +138,22 @@ export default {
         ReviewOfSymptoms,
         AssessmentAndPlanOutpatient,
         AssessmentAndPlanInpatient,
-        BehavioralHealthIssues
+        CareTeam,
+        BehaviouralHealthIssues,
+        DevicesAndEquipmentPhysician,
+        DevicesAndEquipmentPatient,
+        DiagnosesListPhysician,
+        DiagnosesListPatient,
+        DischargeDate,
+        DischargeDispositionPatient,
+        DischargeDispositionPhysician,
+        FollowUpInstructionsPatient,
+        FollowUpInstructionsPhysician,
+        FunctionalCognitivePatient,
+        FunctionalCognitivePhysician,
+        Footnotes,
+        HealthConcerns
+
 
       },
     };

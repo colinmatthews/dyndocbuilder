@@ -9,6 +9,14 @@ export default{
           closeTag:"</div>"
         },
         {
+          id:1,
+          title:"Container",
+          image:null,
+          component:"Container",
+          openTag:"<div>",
+          closeTag:"</div>"
+        },
+        {
           id:2,
           title:"Paragraph",
           image:null,
@@ -221,7 +229,7 @@ export default{
           id:24,
           title:"Devices And Equipment (Physician)",
           image:null,
-          component:"DevicesAndEquipmentPatient",
+          component:"DevicesAndEquipmentPhysician",
           html:`<div class="ddemrcontent" dd:contenttype="PATCARE_MEAS" dd:referenceuuid="D2D36578-30E0-43BF-9D58-AB61AF836BB6"></div>`,
           openTag:"<div>",
           closeTag:"</div>"
@@ -230,11 +238,13 @@ export default{
           id:24,
           title:"Devices And Equipment (Patient)",
           image:null,
-          component:"DevicesAndEquipmentPhysician",
+          component:"DevicesAndEquipmentPatient",
           html:`<div class="ddemrcontent" dd:contenttype="PATCARE_MEAS" dd:referenceuuid="D2D36578-30E0-43BF-9D58-AB61AF836BB6"></div>`,
           openTag:"<div>",
           closeTag:"</div>"
         },
+        /*
+        TODO: Figure out waht this component should look like
         {
           id:25,
           title:"Diagnoses And Orders",
@@ -244,6 +254,7 @@ export default{
           openTag:"<div>",
           closeTag:"</div>"
         },
+        */
         {
           id:26,
           title:"Diagnoses List (Physician)",
@@ -253,6 +264,7 @@ export default{
           openTag:"<div>",
           closeTag:"</div>"
         },
+        
         {
           id:27,
           title:"Diagnoses List (Patient)",
@@ -262,6 +274,8 @@ export default{
           openTag:"<div>",
           closeTag:"</div>"
         },
+        /*
+        TODO: Figure out waht this component should look like
         {
           id:27,
           title:"Diagnoses List with Codes (Physician)",
@@ -271,6 +285,7 @@ export default{
           openTag:"<div>",
           closeTag:"</div>"
         },
+        */
         {
           id:28,
           title:"Discharge Date",
@@ -358,15 +373,6 @@ export default{
           image:null,
           component:"FutureOrders",
           html:`<div class="ddemrcontent" dd:contenttype="ORDERS" dd:referenceuuid="1C84763A-A375-4218-9F40-D4BAE0800374"></div>`,
-          openTag:"<div>",
-          closeTag:"</div>"
-        },
-        {
-          id:38,
-          title:"Health Concerns",
-          image:null,
-          component:"HealthConcerns",
-          html:`<div class="ddemrcontent" dd:contenttype="HEALTHCONCRN" dd:referenceuuid="EABE14DF-577E-4A05-918F-13135C5D4AFD"></div>`,
           openTag:"<div>",
           closeTag:"</div>"
         },

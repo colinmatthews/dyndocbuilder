@@ -8,7 +8,7 @@
     @keydown.stop.prevent="handleKeyDown($event)"
   >
     <div class="inline">
-      <span><u><b>{{content}}</b></u></span>
+      <span class="text-2xl font-bold ">{{content}}</span>
       <refresh-ccw-icon size="15" class="inline ml-2 bg-gray-200" v-if="refresh"></refresh-ccw-icon>
       <delete-icon size="15" class="inline ml-2 bg-gray-200" v-if="deletes"></delete-icon>
       <corner-down-left-icon size="15" class="inline ml-2 bg-gray-200" v-if="freetext"></corner-down-left-icon>

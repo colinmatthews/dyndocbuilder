@@ -58,6 +58,7 @@ export default {
     onLoad(){
       const documentID = this.$route.params.id
       const doc = this.documents.find(doc => doc.id == documentID) 
+      console.log(doc.documentJSON)
       this.editor.import(doc.documentJSON)
       this.$store.commit('setCurrentDocument',doc)
       this.loaded = true

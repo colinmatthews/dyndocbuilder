@@ -5,7 +5,6 @@
     :deletes="$attrs.deletes"
     :freetext="$attrs.freetext"
     :refresh="$attrs.refresh">
-      <p><u><b>{{content}}</b></u></p>
       <p><u><b>Review of Systems</b></u></p>
       <p><b>Constitutional:</b>Denies weight loss, fever and chills.</p>
       <p><b>HEENT:</b>Denies changes in vision and hearing.</p>
@@ -16,7 +15,7 @@
   </GenericComponent>
 </template>
 <script>
-import GenericComponent from '../settings/GenericPhysicianComponent.vue'
+import GenericComponent from '../settings/GenericPhysicianComponentSettings.vue'
 import HeaderSetting from '../settings/HeaderSetting.vue'
 export default {
   components:{

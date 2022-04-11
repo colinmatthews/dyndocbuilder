@@ -5,12 +5,11 @@
     :deletes="$attrs.deletes"
     :freetext="$attrs.freetext"
     :refresh="$attrs.refresh">
-      <p><u><b>{{content}}</b></u></p>
     <p><u>Special Services and Community Resources</u> - Discharge transportation</p>
   </GenericComponent>
 </template>
 <script>
-import GenericComponent from '../settings/GenericPhysicianComponent.vue'
+import GenericComponent from '../settings/GenericPhysicianComponentSettings.vue'
 import HeaderSetting from '../settings/HeaderSetting.vue'
 export default {
   components:{

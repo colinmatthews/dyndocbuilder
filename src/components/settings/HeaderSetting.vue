@@ -5,25 +5,25 @@
     <div class="pl-3 pt-2">
       <div class="flex items-center h-5 mr-2">
           <input id="comments" aria-describedby="comments-description" name="comments" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" v-model="refresh" /> 
-          <label for="comments" class=" pl-1 pt-1 font-medium text-gray-700">Refresh</label>
+          <label for="comments" class=" pl-1 pt-1 font-medium text-gray-700" @click.prevent="">Refresh</label>
      </div>
     </div>
     <div class="pl-3 pt-2">
       <div class="flex items-center h-5 mr-2">
           <input id="comments" aria-describedby="comments-description" name="comments" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" v-model="deletes" /> 
-          <label for="comments" class=" pl-1 pt-1 font-medium text-gray-700">Delete</label>
+          <label for="comments" class=" pl-1 pt-1 font-medium text-gray-700" @click.prevent="">Delete</label>
      </div>
     </div>
     <div class="pl-3 pt-2">
       <div class="flex items-center h-5 mr-2">
           <input id="comments" aria-describedby="comments-description" name="comments" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" v-model="freetext" /> 
-          <label for="comments" class=" pl-1 pt-1 font-medium text-gray-700">Freetext</label>
+          <label for="comments" class=" pl-1 pt-1 font-medium text-gray-700" @click.prevent="">Freetext</label>
      </div>
     </div>
     <div class="pl-3 pt-2">
       <div class="flex items-center h-5 mr-2">
           <input id="comments" aria-describedby="comments-description" name="comments" type="checkbox" class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" v-model="edit" /> 
-          <label for="comments" class=" pl-1 pt-1 font-medium text-gray-700">Edit</label>
+          <label for="comments" class=" pl-1 pt-1 font-medium text-gray-700" @click.prevent="">Edit</label>
      </div>
     </div>
   </div>
@@ -75,7 +75,6 @@ export default {
         return this.elementProps.refresh;
       },
       set(refresh) {
-        console.log(refresh)
         this.elementPropsSetter({ refresh })
       },
       
