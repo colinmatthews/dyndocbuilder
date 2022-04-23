@@ -101,6 +101,40 @@ import FunctionalCognitivePatient from '../components/elements/FunctionalCogniti
 import FunctionalCognitivePhysician from '../components/elements/FunctionalCognitivePhysician'
 import Footnotes from '../components/elements/Footnotes'
 import HealthConcerns from '../components/elements/HealthConcerns'
+import FutureOrders from '../components/elements/FutureOrders.vue'
+import ImplantedDevicesPhysician from '../components/elements/ImplantedDevicesPhysician.vue'
+import ImplantedDevicesPatient from '../components/elements/ImplantedDevicesPatient.vue' 
+import LabResultsPatient from '../components/elements/LabResultsPatient.vue'
+import LTCProblems from '../components/elements/LTCProblems.vue'
+import MedicationReconciliationPhysician from '../components/elements/MedicationReconciliationPhysician.vue'
+import MedicationReconciliationSimple from '../components/elements/MedicationReconciliationSimple.vue'
+import MedicationsWithCategories from '../components/elements/MedicationsWithCategories.vue'
+import ModeOfDischargeTransportation from '../components/elements/ModeOfDischargeTransportation.vue'
+import OnePlanAssociations from '../components/elements/OnePlanAssociations.vue'
+import OnePlanGoals from '../components/elements/OnePlanGoals.vue'
+import OnePlanStrengths from'../components/elements/OnePlanStrengths.vue' 
+import PatientContactInformation from '../components/elements/PatientContactInformation.vue'
+import PatientFullName from '../components/elements/PatientFullName.vue'
+import PatientInstructions from '../components/elements/PatientInstructions.vue'
+import PatientMedicalRecordInformation from '../components/elements/PatientMedicalRecordInformation.vue'
+import PatientNationality from '../components/elements/PatientNationality.vue'
+import ProcedureHistory from '../components/elements/ProcedureHistory.vue'
+import ProfessionalSkillServicesPatient from '../components/elements/ProfessionalSkillServicesPatient.vue'
+import ProfessionalSkillServicesPhysician from '../components/elements/ProfessionalSkillServicesPhysician.vue'
+import RadiologyResultsPatient from '../components/elements/RadiologyResultsPatient.vue' 
+import RadiologyResultsPhysician from '../components/elements/RadiologyResultsPhysician.vue'
+import RecapitulationOfStayPatient from '../components/elements/RecapitulationOfStayPatient.vue'
+import RecapitulationOfStayPhysician from '../components/elements/RecapitulationOfStayPhysician.vue'
+import ReferralOrders from '../components/elements/ReferralOrders.vue'
+import TestsPending from '../components/elements/TestsPending.vue'
+import TestsPendingWithTime from '../components/elements/TestsPendingWithTime.vue'
+import TestsPerformed from '../components/elements/TestsPerformed.vue'
+import VitalsThisVisit from '../components/elements/VitalsThisVisit.vue'
+import VitalsCardiology from '../components/elements/VitalsCardiology.vue'
+import VitalsNeurology from '../components/elements/VitalsNeurology.vue'
+import VitalsThisVisit24Hours from '../components/elements/VitalsThisVisit24Hours.vue'
+import VitalsUrology from '../components/elements/VitalsUrology.vue'
+import VitalsPatient from '../components/elements/VitalsPatient.vue'
 
 
 
@@ -152,7 +186,44 @@ export default {
         FunctionalCognitivePatient,
         FunctionalCognitivePhysician,
         Footnotes,
-        HealthConcerns
+        HealthConcerns,
+        FutureOrders,
+        ImplantedDevicesPhysician,
+        ImplantedDevicesPatient,
+        LabResultsPatient, 
+        LTCProblems,
+        MedicationReconciliationPhysician, 
+        MedicationReconciliationSimple, 
+        MedicationsWithCategories,
+        ModeOfDischargeTransportation,
+        OnePlanAssociations, 
+        OnePlanGoals, 
+        OnePlanStrengths, 
+        PatientContactInformation, 
+        PatientFullName,
+        PatientInstructions,
+        PatientMedicalRecordInformation, 
+        PatientNationality, 
+        ProcedureHistory, 
+        ProfessionalSkillServicesPatient, 
+        ProfessionalSkillServicesPhysician, 
+        RadiologyResultsPatient, 
+        RadiologyResultsPhysician, 
+        RecapitulationOfStayPatient, 
+        RecapitulationOfStayPhysician, 
+        ReferralOrders,
+        TestsPending,  
+        TestsPendingWithTime, 
+        TestsPerformed, 
+        VitalsThisVisit, 
+        VitalsCardiology, 
+        VitalsNeurology, 
+        VitalsThisVisit24Hours, 
+        VitalsUrology,
+        VitalsPatient  
+
+
+
 
 
       },
