@@ -77,6 +77,7 @@ import Export from '../components/Export.vue'
 
 import Allergies from '../components/elements/Allergies.vue'
 import AssessmentAndPlan from '../components/elements/AssessmentAndPlan.vue'
+import AssessmentAndPlanDiagnosis from '../components/elements/AssessmentAndPlanDiagnosis.vue'
 import ChiefComplaint from '../components/elements/ChiefComplaint.vue'
 import HospitalCourse from '../components/elements/HospitalCourse.vue'
 import LabResults from '../components/elements/LabResultsPhysician.vue'
@@ -84,6 +85,59 @@ import Medications from '../components/elements/Medications.vue'
 import PhysicalExam from '../components/elements/PhysicalExam.vue'
 import Problems from '../components/elements/Problems.vue'
 import ReviewOfSymptoms from '../components/elements/ReviewOfSymptoms.vue'
+import AdvancedDirectivePatient from '../components/elements/AdvancedDirectivePatient.vue'
+import AdvancedDirectivePhys from '../components/elements/AdvancedDirectivePhys.vue'
+import AssessmentAndPlanOutpatient from '../components/elements/AssessmentAndPlanOutpatient.vue'
+import AssessmentAndPlanInpatient from '../components/elements/AssessmentAndPlanInpatient.vue'
+import BehaviouralHealthIssues from '../components/elements/BehaviouralHealthIssues'
+import CareTeam from '../components/elements/CareTeam.vue'
+import DevicesAndEquipmentPhysician from '../components/elements/DevicesAndEquipmentPhysician'
+import DevicesAndEquipmentPatient from '../components/elements/DevicesAndEquipmentPatient'
+import DiagnosesListPhysician from '../components/elements/DiagnosesListPhysician'
+import DiagnosesListPatient from '../components/elements/DiagnosesListPatient'
+import DischargeDate from '../components/elements/DischargeDate'
+import DischargeDispositionPatient from '../components/elements/DischargeDispositionPatient'
+import DischargeDispositionPhysician from '../components/elements/DischargeDispositionPhysician'
+import FollowUpInstructionsPatient from '../components/elements/FollowUpInstructionsPatient'
+import FollowUpInstructionsPhysician from '../components/elements/FollowUpInstructionsPhysician'
+import FunctionalCognitivePatient from '../components/elements/FunctionalCognitivePatient'
+import FunctionalCognitivePhysician from '../components/elements/FunctionalCognitivePhysician'
+import Footnotes from '../components/elements/Footnotes'
+import HealthConcerns from '../components/elements/HealthConcerns'
+import FutureOrders from '../components/elements/FutureOrders.vue'
+import ImplantedDevicesPhysician from '../components/elements/ImplantedDevicesPhysician.vue'
+import ImplantedDevicesPatient from '../components/elements/ImplantedDevicesPatient.vue' 
+import LabResultsPatient from '../components/elements/LabResultsPatient.vue'
+import LTCProblems from '../components/elements/LTCProblems.vue'
+import MedicationReconciliationPhysician from '../components/elements/MedicationReconciliationPhysician.vue'
+import MedicationReconciliationSimple from '../components/elements/MedicationReconciliationSimple.vue'
+import MedicationsWithCategories from '../components/elements/MedicationsWithCategories.vue'
+import ModeOfDischargeTransportation from '../components/elements/ModeOfDischargeTransportation.vue'
+import OnePlanAssociations from '../components/elements/OnePlanAssociations.vue'
+import OnePlanGoals from '../components/elements/OnePlanGoals.vue'
+import OnePlanStrengths from'../components/elements/OnePlanStrengths.vue' 
+import PatientContactInformation from '../components/elements/PatientContactInformation.vue'
+import PatientFullName from '../components/elements/PatientFullName.vue'
+import PatientInstructions from '../components/elements/PatientInstructions.vue'
+import PatientMedicalRecordInformation from '../components/elements/PatientMedicalRecordInformation.vue'
+import PatientNationality from '../components/elements/PatientNationality.vue'
+import ProcedureHistory from '../components/elements/ProcedureHistory.vue'
+import ProfessionalSkillServicesPatient from '../components/elements/ProfessionalSkillServicesPatient.vue'
+import ProfessionalSkillServicesPhysician from '../components/elements/ProfessionalSkillServicesPhysician.vue'
+import RadiologyResultsPatient from '../components/elements/RadiologyResultsPatient.vue' 
+import RadiologyResultsPhysician from '../components/elements/RadiologyResultsPhysician.vue'
+import RecapitulationOfStayPatient from '../components/elements/RecapitulationOfStayPatient.vue'
+import RecapitulationOfStayPhysician from '../components/elements/RecapitulationOfStayPhysician.vue'
+import ReferralOrders from '../components/elements/ReferralOrders.vue'
+import TestsPending from '../components/elements/TestsPending.vue'
+import TestsPendingWithTime from '../components/elements/TestsPendingWithTime.vue'
+import TestsPerformed from '../components/elements/TestsPerformed.vue'
+import VitalsThisVisit from '../components/elements/VitalsThisVisit.vue'
+import VitalsCardiology from '../components/elements/VitalsCardiology.vue'
+import VitalsNeurology from '../components/elements/VitalsNeurology.vue'
+import VitalsThisVisit24Hours from '../components/elements/VitalsThisVisit24Hours.vue'
+import VitalsUrology from '../components/elements/VitalsUrology.vue'
+import VitalsPatient from '../components/elements/VitalsPatient.vue'
 
 import {mapState} from 'vuex'
 export default {
@@ -99,16 +153,71 @@ export default {
     SingleColumn,
     Title,
     Export,
+    Container,
+    Paragraph,
+    Allergies,
     AssessmentAndPlan,
+    AssessmentAndPlanDiagnosis,
+    AdvancedDirectivePatient,
+    AdvancedDirectivePhys,
     ChiefComplaint,
     HospitalCourse,
     LabResults,
-    ColumnLarge,
-    ColumnSmall,
     Medications,
     PhysicalExam,
     Problems,
-    ReviewOfSymptoms
+    ReviewOfSymptoms,
+    AssessmentAndPlanOutpatient,
+    AssessmentAndPlanInpatient,
+    CareTeam,
+    BehaviouralHealthIssues,
+    DevicesAndEquipmentPhysician,
+    DevicesAndEquipmentPatient,
+    DiagnosesListPhysician,
+    DiagnosesListPatient,
+    DischargeDate,
+    DischargeDispositionPatient,
+    DischargeDispositionPhysician,
+    FollowUpInstructionsPatient,
+    FollowUpInstructionsPhysician,
+    FunctionalCognitivePatient,
+    FunctionalCognitivePhysician,
+    Footnotes,
+    HealthConcerns,
+    FutureOrders,
+    ImplantedDevicesPhysician,
+    ImplantedDevicesPatient,
+    LabResultsPatient, 
+    LTCProblems,
+    MedicationReconciliationPhysician, 
+    MedicationReconciliationSimple, 
+    MedicationsWithCategories,
+    ModeOfDischargeTransportation,
+    OnePlanAssociations, 
+    OnePlanGoals, 
+    OnePlanStrengths, 
+    PatientContactInformation, 
+    PatientFullName,
+    PatientInstructions,
+    PatientMedicalRecordInformation, 
+    PatientNationality, 
+    ProcedureHistory, 
+    ProfessionalSkillServicesPatient, 
+    ProfessionalSkillServicesPhysician, 
+    RadiologyResultsPatient, 
+    RadiologyResultsPhysician, 
+    RecapitulationOfStayPatient, 
+    RecapitulationOfStayPhysician, 
+    ReferralOrders,
+    TestsPending,  
+    TestsPendingWithTime, 
+    TestsPerformed, 
+    VitalsThisVisit, 
+    VitalsCardiology, 
+    VitalsNeurology, 
+    VitalsThisVisit24Hours, 
+    VitalsUrology,
+    VitalsPatient  
   
 
   },
