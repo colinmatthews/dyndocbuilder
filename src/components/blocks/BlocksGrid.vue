@@ -2,7 +2,7 @@
    <div class="bg-white shadow overflow-hidden sm:rounded-md grid-list">
     <ul role="list" class="divide-y divide-gray-200">
       <li v-for="block in filteredBlocks" :key="block.index">
-        <Blueprint component="card">
+        <Blueprint component="card" @drag="trackClick()">
         <div class="block hover:bg-gray-50" draggable="true">
           <div class="px-4 py-4 sm:px-6">
             <div class="flex items-center justify-between">
@@ -35,6 +35,7 @@
 import {mapState} from 'vuex'
 import {Blueprint, Canvas} from '@v-craft/core'
 import fuzzysort from 'fuzzysort'
+import posthog from 'posthog-js'
 
 export default {
   components:{
@@ -56,6 +57,9 @@ export default {
     isSelected(blockId){
       return blockId == this.selected
     },
+    trackClick(){
+      posthog.capture('Drag Block', { type:this.content })
+    }
   },
   data(){
     return{
