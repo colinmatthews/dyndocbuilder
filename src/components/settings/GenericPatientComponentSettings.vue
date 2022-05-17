@@ -19,6 +19,7 @@
 </template>
 <script>
 import { RefreshCcwIcon,DeleteIcon,CornerDownLeftIcon,EditIcon  } from 'vue-feather-icons'
+import posthog from 'posthog-js'
 export default {
    inject: [
     'editor',
@@ -55,6 +56,9 @@ export default {
     removeElement() {
       return this.editor.removeNode(this.selectedNode);
     },
+    trackClick(){
+      posthog.capture('Click Block', { type:this.content })
+    }
   }
 }
 </script>
