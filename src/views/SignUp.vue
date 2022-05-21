@@ -102,14 +102,14 @@ export default {
           this.$toast.warning("Unable to create account - please try again.",{timeout:5000});
         }
       }
-      catch{
-        console.log("error creating account")
+      catch(err){
+        console.log(err)
         this.$toast.warning("Unable to create account - please try again.",{timeout:5000});
       }
     },
     handleKeyDown(e){
       if(e.key == "Enter" || e.key == "Return"){
-          this.login()
+          this.signup()
       }
     }
   }
