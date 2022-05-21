@@ -4,6 +4,7 @@ import Home from '../views/Home.vue'
 import Login from '../views/Login.vue'
 import PasswordReset from '../views/PasswordReset.vue'
 import Account from '../views/Account.vue'
+import SignUp from '../views/SignUp.vue'
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -38,6 +39,11 @@ const routes = [
     path: '/login',
     component: Login,
     name:"Login"
+  },
+  {
+    path: '/signup',
+    component: SignUp,
+    name:"Sign Up"
   },
   {
     path: '/reset',

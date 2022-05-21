@@ -171,5 +171,25 @@ export default new Vuex.Store({
         console.log(err)
       })
     },
+
+    async createUser({commit,state},params){
+      console.log(params)
+      const data = {
+        displayName:params.displayName,
+        tenant:"tCJwkcQISAoO2B9kQdhJ"
+      }
+
+      let url = process.env.VUE_APP_FUNCTIONS_URL +"/users"
+      await this.$http.post(url,data, {headers: {"Authorization" : "Bearer " + params.token}}).then(res => {
+        commit("setUser",res.data)
+      })
+      .then(() => {
+        router.push("/")
+      })
+      .catch(err => {
+        Vue.$toast.error("Failed to create user. We have been notified of this error.",{timeout:10000});
+        console.log(err)
+      })
+    }
   }
 })

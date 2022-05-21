@@ -28,12 +28,18 @@
       <div class="mx-auto w-full max-w-sm lg:w-96">
         <div>
           <img class="h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow" />
-          <h2 class="mt-6 text-3xl font-extrabold text-gray-900">Sign in to your account</h2>
+          <h2 class="mt-6 text-3xl font-extrabold text-gray-900">Create an account</h2>
         </div>
 
         <div class="mt-8">
           <div class="mt-6">
             <div class="space-y-6">
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700">Name </label>
+                <div class="mt-1">
+                  <input id="displayName" v-model="displayName" name="displayName" type="text" required="" class="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" />
+                </div>
+              </div>
               <div>
                 <label for="email" class="block text-sm font-medium text-gray-700"> Email address </label>
                 <div class="mt-1">
@@ -50,14 +56,12 @@
 
               <div class="flex items-center justify-between">
                 <div class="text-sm">
-                  <router-link href="#" class="font-medium text-indigo-600 hover:text-indigo-500" to="/reset"> Forgot your password? </router-link>
-                  <br class="pt-2">
-                  <router-link href="#" class="font-medium text-indigo-600 hover:text-indigo-500" to="/signup"> Create an account </router-link>
+                  <router-link href="#" class="font-medium text-indigo-600 hover:text-indigo-500" to="/login">Sign In </router-link>
                 </div>
               </div>
 
               <div>
-                <button @click="login()" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign in</button>
+                <button @click="signup()" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Create Account</button>
               </div>
             </div>
           </div>
@@ -71,33 +75,36 @@
 </template>
 
 <script>
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword  } from "firebase/auth";
 export default {
   data(){
     return{
       email:"",
-      password:""
+      password:"",
+      displayName:""
     }
   },
   methods:{
-    login: async function(){
+    signup: async function(){
       try{
         const email = this.email
         const password = this.password
+        const displayName = this.displayName
         const auth = getAuth();
 
-        const userCredentials = await signInWithEmailAndPassword(auth, email, password)
-        if(userCredentials.user){
-          this.$router.push("/")
+        const userCredentials = await createUserWithEmailAndPassword(auth,email,password)
+        const token = await userCredentials.user.getIdToken(true)
+        if(token.length > 0){
+          this.$store.dispatch("createUser",({displayName,token}))
         }
         else{
-          this.$toast.warning("Login failed - please try again.",{timeout:5000});
+          console.log('unable to create account')
+          this.$toast.warning("Unable to create account - please try again.",{timeout:5000});
         }
       }
       catch{
-        this.$toast.warning("Login failed - please try again.",{timeout:5000});
-        console.log("error logging in")
-       
+        console.log("error creating account")
+        this.$toast.warning("Unable to create account - please try again.",{timeout:5000});
       }
     },
     handleKeyDown(e){
