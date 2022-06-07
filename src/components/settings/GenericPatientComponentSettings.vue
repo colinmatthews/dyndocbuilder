@@ -56,9 +56,7 @@ export default {
     removeElement() {
       return this.editor.removeNode(this.selectedNode);
     },
-    trackClick(){
-      posthog.capture('Click Block', { type:this.content })
-    }
+
   }
 }
 </script>

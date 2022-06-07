@@ -42,8 +42,8 @@ export default{
           image:null,
           component:"ColumnLarge",
           html:``,
-          openTag:"<div>",
-          closeTag:"</div>"
+          openTag:"",
+          closeTag:""
         },
         {
           id:5,
@@ -51,8 +51,8 @@ export default{
           image:null,
           component:"ColumnSmall",
           html:``,
-          openTag:"<div>",
-          closeTag:"</div>"
+          openTag:"",
+          closeTag:""
         },
         {
           id:6,

@@ -63,7 +63,7 @@ export default {
         const twoColumnEnd = cernerExportWrapper["two-column-end"]
         
         const fullColumnOne = twoColumnFirstOpen + columnOne + twoColumnFirstEnd
-        const fullColumnTwo = twoColumnSecondOpen + columnTwo +twoColumnSecondEnd
+        const fullColumnTwo = twoColumnSecondOpen + columnTwo + twoColumnSecondEnd
         
         htmlDocument = openHTML + twoColumnOpen + fullColumnOne + fullColumnTwo + twoColumnEnd + endHTML
       }
@@ -80,14 +80,11 @@ export default {
        Base state: Bottom of tree (component has no children)
        Output: HTML representation of all components in tree
     */
-   
       const block = this.blocks.filter(obj => {
           console.log(obj)
           return obj.component == jsonObj.componentName
       })
       
-      
-
       if(jsonObj.children.length == 0) return this.buildHTMLString(jsonObj)
       
       const openTag = block[0].openTag
