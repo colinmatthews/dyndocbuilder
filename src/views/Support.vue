@@ -6,7 +6,7 @@
           <h1 class="text-2xl leading-6 font-medium text-gray-900">Support</h1>
         </div>
        
-       <form class="space-y-8 divide-y divide-gray-200" data-netlify="true" name="support">
+       <form class="space-y-8 divide-y divide-gray-200" data-netlify="true" name="support" method="POST">
           <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
             <div>
               <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
