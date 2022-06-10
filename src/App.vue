@@ -4,7 +4,7 @@
     <div class="hidden w-28 bg-indigo-700 overflow-y-auto md:block" v-if="authenticated">
       <div class="w-full py-6 flex flex-col items-center">
         <div class="flex-shrink-0 flex items-center">
-          <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=white" alt="Workflow" />
+          <img class="h-8 w-auto" src="../public/logo.png" alt="Workflow" />
         </div>
         <div class="flex-1 mt-6 w-full px-2 space-y-1">
           <router-link v-for="item in sidebarNavigation" :key="item.name" :to="item.path" :class="[item.current ? 'bg-indigo-800 text-white' : 'text-indigo-100 hover:bg-indigo-800 hover:text-white', 'group w-full p-3 rounded-md flex flex-col items-center text-xs font-medium']" :aria-current="item.current ? 'page' : undefined">
@@ -33,7 +33,7 @@
                 </div>
               </template>
               <div class="flex-shrink-0 px-4 flex items-center">
-                <img class="h-8 w-auto" src="https://tailwindui.com/img/logos/workflow-mark.svg?color=white" alt="Workflow" />
+                <img class="h-8 w-auto" src="../public/logo.png" alt="Workflow" />
               </div>
               <div class="mt-5 flex-1 h-0 px-2 overflow-y-auto">
                 <nav class="h-full flex flex-col">
