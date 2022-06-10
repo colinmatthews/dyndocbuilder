@@ -6,14 +6,14 @@
           <h1 class="text-2xl leading-6 font-medium text-gray-900">Support</h1>
         </div>
        
-       <form class="space-y-8 divide-y divide-gray-200" netlify name="support">
+       <form class="space-y-8 divide-y divide-gray-200" netlify name="support"  data-netlify="true" data-netlify-honeypot="bot-field" @submit.prevent="handleSubmit">
           <div class="space-y-8 divide-y divide-gray-200 sm:space-y-5">
             <div>
               <div class="mt-6 sm:mt-5 space-y-6 sm:space-y-5">
                 <div class="sm:grid sm:grid-cols-3 sm:gap-4 sm:items-start sm:border-t sm:border-gray-200 sm:pt-5">
                   <label for="about" class="block text-sm font-medium text-gray-700 sm:mt-px sm:pt-2 px-10">Issue </label>
                   <div class="mt-1 sm:mt-0 sm:col-span-2">
-                    <textarea id="about" name="issue" rows="3" class="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md" />
+                    <textarea id="about" name="issue" :v-bind="input"  rows="3" class="max-w-lg shadow-sm block w-full focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border border-gray-300 rounded-md" />
                     <p class="mt-2 text-sm text-gray-500">Write a few sentences about the issue you experienced..</p>
                   </div>
                 </div>
@@ -33,12 +33,37 @@
 </template>
 
 <script>
+import axios from "axios"
 export default {
   data(){
     return{
-      
+      form: {
+        input: ""
+      }
     }
   },
+  methods:{
+    encode (data) {
+      return Object.keys(data)
+        .map(
+          key => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+        )
+        .join("&");
+    },
+    handleSubmit () {
+      const axiosConfig = {
+        header: { "Content-Type": "application/x-www-form-urlencoded" }
+      };
+      axios.post(
+        "/",
+        this.encode({
+          "form-name": "support",
+          ...this.form
+        }),
+        axiosConfig
+      );
+    }
+  }
  
  }
 
