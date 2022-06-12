@@ -84,12 +84,6 @@ export default {
           path:"/account",
           icon:"BIconPersonCircle",
           active:false
-        },
-        {
-          name:"Support",
-          path:"/support",
-          icon:"BIconGear",
-          active:false
         }
       ]
     };

@@ -5,7 +5,6 @@ import Login from '../views/Login.vue'
 import PasswordReset from '../views/PasswordReset.vue'
 import Account from '../views/Account.vue'
 import SignUp from '../views/SignUp.vue'
-import Support from '../views/Support.vue'
 
 import { getAuth, onAuthStateChanged } from "firebase/auth";
 
@@ -58,14 +57,6 @@ const routes = [
       authRequired:true
     },
   },
-  {
-    path: '/support',
-    component: Support,
-    name:"Support",
-    meta:{
-      authRequired:true
-    },
-  }
 
 ]
 
