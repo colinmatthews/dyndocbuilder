@@ -26,7 +26,7 @@ export default {
   },
   craft: {
     defaultProps: {
-      content: '<b>Problems</b>',
+      content: 'Problems',
       edit:true,
       refresh:true,
       deletes:true,

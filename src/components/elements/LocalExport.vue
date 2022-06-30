@@ -1,11 +1,12 @@
 
 <template>
   <div style="float:right;">
-    <button type="button" 
-    @click="doExport()"
+    <a type="button" 
+    href="https://wiki.cerner.com/pages/releaseview.action?spaceKey=reference&title=Understand%20Dynamic%20Documentation%20EMR%20Content%20-%20Cerner%20Basic%20Content"
+    target="_blank"
     class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-gray-700 bg-gray-100 hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-    Internal Data
-  </button>
+    Documentation
+  </a>
   <template as="template" v-if="open" class="overflow-y-hidden">
     <div as="div" class="fixed z-10 inset-0 overflow-y-auto" @close="open = false">
       <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
