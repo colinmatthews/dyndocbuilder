@@ -6,7 +6,9 @@
     <div class="mt-8 px-4">
         <h3 class="text-2xl leading-6 font-medium text-gray-900">
           New Document
+          <span class="tems-center px-3 py-0.5 rounded-full text-sm font-medium bg-green-100 text-green-800 ">Early Access</span>
         </h3>
+       
       </div>
 
     <div class="flex justify-left gap-8 pt-8 px-4 ">
@@ -69,7 +71,7 @@
       <div class="flex px-4 pb-2">
         <div class="flex">
           <p class="text-sm text-purple-700 cursor-pointer">My Documents</p>
-          <p class="text-sm pl-4 cursor-pointer">All Documents</p>
+          <p class="text-sm pl-4 cursor-pointer px-2">All Documents</p> 
         </div>
         <div class="border-b ml-auto">
           <label for="search" class="sr-only">Search</label>
