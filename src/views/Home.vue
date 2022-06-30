@@ -1,7 +1,7 @@
 <template>
 <div class="overflow-y-scroll w-full overflow-x-hidden">
   <b-spinner label="Spinning" v-if="!authenticated" class="m-5" ></b-spinner>
-  <div class="overflow-y-scroll w-full overflow-x-hidden" v-else>
+  <div class=" w-full" v-else>
 
     <div class="mt-8 px-4">
         <h3 class="text-2xl leading-6 font-medium text-gray-900">
