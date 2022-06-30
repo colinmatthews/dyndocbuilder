@@ -88,6 +88,8 @@ import AssessmentAndPlanOutpatient from '../components/elements/AssessmentAndPla
 import AssessmentAndPlanInpatient from '../components/elements/AssessmentAndPlanInpatient.vue'
 import BehaviouralHealthIssues from '../components/elements/BehaviouralHealthIssues'
 import CareTeam from '../components/elements/CareTeam.vue'
+import CommunityResourcesPatient from '../components/elements/CommunityResourcesPatient.vue'
+import CommunityResourcesPhysician from '../components/elements/CommunityResourcesPhysician.vue'
 import DevicesAndEquipmentPhysician from '../components/elements/DevicesAndEquipmentPhysician'
 import DevicesAndEquipmentPatient from '../components/elements/DevicesAndEquipmentPatient'
 import DiagnosesListPhysician from '../components/elements/DiagnosesListPhysician'
@@ -95,20 +97,32 @@ import DiagnosesListPatient from '../components/elements/DiagnosesListPatient'
 import DischargeDate from '../components/elements/DischargeDate'
 import DischargeDispositionPatient from '../components/elements/DischargeDispositionPatient'
 import DischargeDispositionPhysician from '../components/elements/DischargeDispositionPhysician'
+import FamilyHistory from '../components/elements/FamilyHistory.vue'
 import FollowUpInstructionsPatient from '../components/elements/FollowUpInstructionsPatient'
 import FollowUpInstructionsPhysician from '../components/elements/FollowUpInstructionsPhysician'
 import FunctionalCognitivePatient from '../components/elements/FunctionalCognitivePatient'
 import FunctionalCognitivePhysician from '../components/elements/FunctionalCognitivePhysician'
 import Footnotes from '../components/elements/Footnotes'
 import HealthConcerns from '../components/elements/HealthConcerns'
+import HistoryOfPresentIllness from '../components/elements/HistoryOfPresentIllness.vue'
+import HomeTreatmentsPatient from '../components/elements/HomeTreatmentsPatient.vue'
+import HomeTreatmentsPhysician from '../components/elements/HomeTreatmentsPhysician.vue'
 import FutureOrders from '../components/elements/FutureOrders.vue'
+import ImmunizatonsPhysician from '../components/elements/ImmunizationsPhysician.vue'
+import ImmunizationsPatient from '../components/elements/ImmunizationsPatient.vue'
+import ImmunizationsThisVisitPhysician from '../components/elements/ImmunizationsThisVisitPhysician.vue'
+import ImmunizationsThisVistsPatient from '../components/elements/ImmunizationsThisVisitPatient.vue'
 import ImplantedDevicesPhysician from '../components/elements/ImplantedDevicesPhysician.vue'
 import ImplantedDevicesPatient from '../components/elements/ImplantedDevicesPatient.vue' 
+import LastDocumentedAssessmentAndPlan from '../components/elements/LastDocumentedAssessmentAndPlan.vue'
 import LabResultsPatient from '../components/elements/LabResultsPatient.vue'
+import LabResultsPhysician from '../components/elements/LabResultsPhysician.vue'
 import LTCProblems from '../components/elements/LTCProblems.vue'
 import MedicationReconciliationPhysician from '../components/elements/MedicationReconciliationPhysician.vue'
 import MedicationReconciliationSimple from '../components/elements/MedicationReconciliationSimple.vue'
 import MedicationsWithCategories from '../components/elements/MedicationsWithCategories.vue'
+import MedicationsAndImmunizationsAdministered from '../components/elements/MedicationsAndImmunizationsAdministered.vue'
+import MedicationReconciliationListWithDosePatient from '../components/elements/MedicationReconciliationListWithDosePatient.vue'
 import ModeOfDischargeTransportation from '../components/elements/ModeOfDischargeTransportation.vue'
 import OnePlanAssociations from '../components/elements/OnePlanAssociations.vue'
 import OnePlanGoals from '../components/elements/OnePlanGoals.vue'
@@ -126,9 +140,13 @@ import RadiologyResultsPhysician from '../components/elements/RadiologyResultsPh
 import RecapitulationOfStayPatient from '../components/elements/RecapitulationOfStayPatient.vue'
 import RecapitulationOfStayPhysician from '../components/elements/RecapitulationOfStayPhysician.vue'
 import ReferralOrders from '../components/elements/ReferralOrders.vue'
+import TaggedLabs from '../components/elements/TaggedLabs.vue'
+import TaggedText from '../components/elements/TaggedText.vue'
+import TaggedImages from '../components/elements/TaggedImages.vue'
 import TestsPending from '../components/elements/TestsPending.vue'
 import TestsPendingWithTime from '../components/elements/TestsPendingWithTime.vue'
 import TestsPerformed from '../components/elements/TestsPerformed.vue'
+import SocialHistory from '../components/elements/SocialHistory.vue'
 import VitalsThisVisit from '../components/elements/VitalsThisVisit.vue'
 import VitalsCardiology from '../components/elements/VitalsCardiology.vue'
 import VitalsNeurology from '../components/elements/VitalsNeurology.vue'
@@ -174,27 +192,41 @@ export default {
         AssessmentAndPlanInpatient,
         CareTeam,
         BehaviouralHealthIssues,
-        DevicesAndEquipmentPhysician,
+        CommunityResourcesPatient,
+        CommunityResourcesPhysician,
         DevicesAndEquipmentPatient,
+        DevicesAndEquipmentPhysician,
         DiagnosesListPhysician,
         DiagnosesListPatient,
         DischargeDate,
         DischargeDispositionPatient,
         DischargeDispositionPhysician,
+        FamilyHistory,
         FollowUpInstructionsPatient,
         FollowUpInstructionsPhysician,
         FunctionalCognitivePatient,
         FunctionalCognitivePhysician,
         Footnotes,
         HealthConcerns,
+        HistoryOfPresentIllness,
+        HomeTreatmentsPhysician,
+        HomeTreatmentsPatient,
         FutureOrders,
+        ImmunizatonsPhysician,
+        ImmunizationsPatient,
+        ImmunizationsThisVisitPhysician,
+        ImmunizationsThisVistsPatient,
         ImplantedDevicesPhysician,
         ImplantedDevicesPatient,
-        LabResultsPatient, 
+        LastDocumentedAssessmentAndPlan,
+        LabResultsPatient,
+        LabResultsPhysician, 
         LTCProblems,
         MedicationReconciliationPhysician, 
         MedicationReconciliationSimple, 
         MedicationsWithCategories,
+        MedicationsAndImmunizationsAdministered,
+        MedicationReconciliationListWithDosePatient,
         ModeOfDischargeTransportation,
         OnePlanAssociations, 
         OnePlanGoals, 
@@ -212,6 +244,10 @@ export default {
         RecapitulationOfStayPatient, 
         RecapitulationOfStayPhysician, 
         ReferralOrders,
+        SocialHistory,
+        TaggedLabs,
+        TaggedText,
+        TaggedImages,
         TestsPending,  
         TestsPendingWithTime, 
         TestsPerformed, 

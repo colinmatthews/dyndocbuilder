@@ -1,5 +1,5 @@
 <template>
- <div class="h-screen flex h-full bg-gray-50 overflow-y-hidden " >
+ <div class="h-screen flex bg-gray-50 overflow-y-hidden " >
     <!-- Narrow sidebar -->
     <div class="hidden w-28 bg-indigo-700 overflow-y-auto md:block" v-if="authenticated">
       <div class="w-full py-6 flex flex-col items-center">

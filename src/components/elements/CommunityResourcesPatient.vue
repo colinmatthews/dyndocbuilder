@@ -9,7 +9,7 @@
   </GenericComponent>
 </template>
 <script>
-import GenericComponent from '../settings/GenericPhysicianComponentSettings.vue'
+import GenericComponent from '../settings/GenericPatientComponentSettings.vue'
 import HeaderSetting from '../settings/HeaderSetting.vue'
 export default {
   components:{
@@ -17,7 +17,7 @@ export default {
   },
   craft: {
     defaultProps: {
-      content: 'Hospital Course',
+      content: 'The Following Services Have Been Arranged For You',
       edit:true,
       refresh:true,
       deletes:true,

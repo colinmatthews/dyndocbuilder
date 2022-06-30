@@ -41,6 +41,11 @@ const routes = [
     name:"Login"
   },
   {
+    path: '/signup',
+    component: SignUp,
+    name:"Sign Up"
+  },
+  {
     path: '/reset',
     component: PasswordReset
   },

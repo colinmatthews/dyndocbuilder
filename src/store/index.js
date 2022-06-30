@@ -2,6 +2,7 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import blocks from './blocks'
 import router from '../router/index'
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -61,7 +62,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    async getDocuments({commit,state}){
+    async getDocuments({commit,state,dispatch}){
+      await dispatch('checkToken')
+      console.log('getDocuments')
       let url = process.env.VUE_APP_FUNCTIONS_URL +"/documents/"
       return this.$http.get(url, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
         commit('setDocuments',res.data)
@@ -72,7 +75,8 @@ export default new Vuex.Store({
       })
     },
 
-    async updateRecentlyViewed({commit,state},documentID){
+    async updateRecentlyViewed({commit,state,dispatch},documentID){
+      await dispatch('checkToken')
       let url = process.env.VUE_APP_FUNCTIONS_URL +"/users/id"
       let order = state.user.viewed
       const id = state.documents.find(el => el.id == documentID ).id
@@ -89,7 +93,8 @@ export default new Vuex.Store({
       })
     },
 
-    async removeRecentlyViewed({commit,state},documentID){
+    async removeRecentlyViewed({commit,state,dispatch},documentID){
+      await dispatch('checkToken')
       let url = process.env.VUE_APP_FUNCTIONS_URL +"/users/id"
       const order = state.user.viewed.filter(item => item !== documentID);
       const data = {viewed:order}
@@ -102,7 +107,8 @@ export default new Vuex.Store({
       })
     },
 
-    async updateDocumentJSON({commit,state},documentData){
+    async updateDocumentJSON({commit,state,dispatch},documentData){
+      await dispatch('checkToken')
       let url = process.env.VUE_APP_FUNCTIONS_URL +"/documents/id"
       await this.$http.put(url, documentData, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
         commit("setDocumentById",documentData)
@@ -113,7 +119,8 @@ export default new Vuex.Store({
       })
     },
 
-    async getUser({commit,state}){
+    async getUser({commit,state,dispatch}){
+      await dispatch('checkToken')
       let url = process.env.VUE_APP_FUNCTIONS_URL +"/users"
       await this.$http.get(url, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
         commit("setUser",res.data)
@@ -124,7 +131,8 @@ export default new Vuex.Store({
       })
     },
 
-    async createDocument({commit,state},type){
+    async createDocument({commit,state,dispatch},type){
+      await dispatch('checkToken')
       let url = process.env.VUE_APP_FUNCTIONS_URL +"/documents"
       const data = {type:type}
       await this.$http.post(url,data, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
@@ -138,7 +146,8 @@ export default new Vuex.Store({
       })
     },
 
-    async updateTitle({commit,state},documentData){
+    async updateTitle({commit,state,dispatch},documentData){
+      await dispatch('checkToken')
       let url = process.env.VUE_APP_FUNCTIONS_URL +"/documents/id"
       await this.$http.put(url, documentData, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
         commit("updateDocumentTitle",documentData)
@@ -150,6 +159,7 @@ export default new Vuex.Store({
     },
 
     async deleteDocument({commit,state,dispatch},documentID){
+      await dispatch('checkToken')
       let url = process.env.VUE_APP_FUNCTIONS_URL +"/documents/id"
       await this.$http.delete(url, {headers: {"Authorization" : "Bearer " + state.token}, data:{documentID:documentID}}).then(res => {
         commit("deleteDocument",documentID)
@@ -161,7 +171,8 @@ export default new Vuex.Store({
       await dispatch('removeRecentlyViewed',documentID)
     },
 
-    async updateUserDisplayName({commit,state},displayName){
+    async updateUserDisplayName({commit,state,dispatch},displayName){
+      await dispatch('checkToken')
       let url = process.env.VUE_APP_FUNCTIONS_URL +"/users/id"
       await this.$http.put(url, {displayName:displayName}, {headers: {"Authorization" : "Bearer " + state.token}}).then(res => {
         commit("setUserDisplayName",displayName)
@@ -172,7 +183,8 @@ export default new Vuex.Store({
       })
     },
 
-    async createUser({commit,state},params){
+    async createUser({commit,state,dispatch},params){
+      await dispatch('checkToken')
       console.log(params)
       const data = {
         displayName:params.displayName,
@@ -190,6 +202,14 @@ export default new Vuex.Store({
         Vue.$toast.error("Failed to create user. We have been notified of this error.",{timeout:10000});
         console.log(err)
       })
+    },
+
+    //Helper function
+    async checkToken({commit}){
+      const auth = getAuth();
+      const token = await auth.currentUser.getIdToken()
+      commit('setToken',token)
+      console.log('checkToken')
     }
   }
 })

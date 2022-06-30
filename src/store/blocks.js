@@ -85,7 +85,7 @@ export default{
           id:9,
           title:"Lab Results (Physician)",
           image:null,
-          component:"LabResults",
+          component:"LabResultsPhysician",
           html:`<div class="ddemrcontent" dd:contenttype="LABS_V2" dd:linkedrefresh="TESTS" dd:referenceuuid="F00A1650-AE55-4CC2-A86C-C8262A21A4A1"></div>`,
           openTag:"<div>",
           closeTag:"</div>"
@@ -94,7 +94,7 @@ export default{
           id:9,
           title:"Lab Results Tagged Only (Physician)",
           image:null,
-          component:"LabResults",
+          component:"LabResultsPhysician",
           html:`<div class="ddemrcontent" dd:contenttype="LABS_V2" dd:linkedrefresh="TESTS" dd:querybyfilter="false" dd:referenceuuid="F00A1650-AE55-4CC2-A86C-C8262A21A4A1"></div>`,
           openTag:"<div>",
           closeTag:"</div>"
@@ -209,15 +209,6 @@ export default{
         },
         {
           id:22,
-          title:"Community Resources (Physician)",
-          image:null,
-          component:"CommunityResourcesPhysician",
-          html:`<div class="ddemrcontent" dd:contenttype="PATCARE_MEAS" dd:referenceuuid="50D93E46-20A6-4F60-91D0-5D5B0655605C"></div>`,
-          openTag:"<div>",
-          closeTag:"</div>"
-        },
-        {
-          id:23,
           title:"Community Resources (Physician)",
           image:null,
           component:"CommunityResourcesPhysician",
@@ -625,24 +616,6 @@ export default{
           image:null,
           component:"PatientNationality",
           html:`<div class="ddemrcontent" dd:contenttype="ENCNTRINFO" dd:referenceuuid="5991C999-F0C9-4A35-94E3-B003475B2371"></div>`,
-          openTag:"<div>",
-          closeTag:"</div>"
-        },
-        {
-          id:67,
-          title:"Patient Medical Record Information",
-          image:null,
-          component:"PatientMedicalRecordInformation",
-          html:`<div class="ddemrcontent" dd:contenttype="ENCNTRINFO" dd:referenceuuid="165C11FB-7B7A-4AD6-91F6-D400F641D7FC"></div>`,
-          openTag:"<div>",
-          closeTag:"</div>"
-        },
-        {
-          id:68,
-          title:"Patient Medical Record Information",
-          image:null,
-          component:"PatientMedicalRecordInformation",
-          html:`<div class="ddemrcontent" dd:contenttype="ENCNTRINFO" dd:referenceuuid="165C11FB-7B7A-4AD6-91F6-D400F641D7FC"></div>`,
           openTag:"<div>",
           closeTag:"</div>"
         },

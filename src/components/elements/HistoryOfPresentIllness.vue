@@ -5,7 +5,7 @@
     :deletes="$attrs.deletes"
     :freetext="$attrs.freetext"
     :refresh="$attrs.refresh">
-        <b>Hx of migraines</b>
+        <p><b>Hx of migraines</b></p>
         <b>Admission information: </b><p>The patient is being admitted from the emergency department. </p>
         <b>Symptoms: </b><p>Blurred vision and headache. Neck pain. </p>
   </GenericComponent>
