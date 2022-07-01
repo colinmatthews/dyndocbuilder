@@ -29,7 +29,8 @@
             @click="createDocumentHandler('single')"
             type="button" 
             class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
-              Create
+              <span v-if="!singleSpinner">Create</span>
+              <b-spinner small label="Spinning" v-else></b-spinner>
             </button>
           </div>
         </div>
@@ -51,7 +52,8 @@
             <button type="button" 
             @click="createDocumentHandler('double')"
             class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm">
-              Create
+              <span v-if="!doubleSpinner">Create</span>
+              <b-spinner small label="Spinning" v-else></b-spinner>
             </button>
           </div>
         </div>
@@ -135,7 +137,8 @@
                   <div class="mt-6">
                     <button type="button" @click="createDocumentHandler('single')" class="inline-flex items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                       <BIconPlusCircle  class="mx-2"/>
-                      New document
+                      <span v-if="!singleSpinner">Create document</span>
+                      <b-spinner small label="Spinning" v-else></b-spinner>
                     </button>
                   </div>
                 </div>
@@ -162,7 +165,9 @@ export default {
       showModal:false,
       propTitle:"",
       propDocumentID:"",
-      documentSearch:""
+      documentSearch:"",
+      singleSpinner:false,
+      doubleSpinner:false,
     }
   },
   components:{
@@ -204,6 +209,12 @@ export default {
       'createDocument'
     ]),
     createDocumentHandler:async function(type){
+      if(type === "single"){
+        this.singleSpinner = true
+      }
+      else if (type === "double"){
+        this.doubleSpinner = true
+      }
       await this.createDocument(type)
     },
     showConfirmDeleteModal(document){
